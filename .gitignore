@@ -1,0 +1,144 @@
+# ============================================================
+# 大文件排除（>100MB，超过 GitHub 单文件 100MB 硬限制）
+# 这些文件本地保留，不上传到 GitHub。
+# 如需获取，请通过 README 中的联系方式索取。
+# ============================================================
+
+# 3.1 学期
+/3.1/现代控制系统/现代控制系统 第十三版_15244176.pdf等2个文件.zip
+/3.1/CN/教材/计算机网络：自顶向下方法（原书第8版）.pdf
+/3.1/DIP/课本资源/课本图片（V4）/testpattern8192.bmp
+/3.1/DIP/课本资源/数字图像处理-第4版-冈萨雷斯.pdf
+
+# 3.2 学期
+/3.2/Parallel_Computing/old_ppt/PPT2/课件1.pptx
+/3.2/Pattern_Recognition/HW/第三次平时作业.zip
+
+# 其他大文件（>50MB）
+/3.1/DB/DB_LAB/lab_source/School/附录B-4 choices.sql
+/3.2/Pattern_Recognition/HW/期末大作业.zip
+
+# 大型课本 / 课件（>50MB，本地保留，不上传）
+/3.1/CG/ppt/CG-01.pdf
+/3.1/DB/DB_LAB/lab_source/实验课教材清晰扫描版.pdf
+/3.1/DB/DB_LAB/old_lab_ppt/实验课教材清晰扫描版.pdf
+/3.1/DS/课本/分布式系统原理与范型 （第二版） (（美）特尼博姆（Tanenbaum，A.S.）等著；辛春生等译) (Z-Library).pdf
+/3.2/现代密码学/密码学原理与实践（第三版） (Douglas R. Stinson 道格拉斯 R. 斯廷森) (Z-Library).pdf
+
+# 大数据项目实验材料 / 数据集（体量大，本地保留，代码与报告仍上传）
+/3.2/Big_Data/my_lab/final/football_recommender/data/
+/3.2/Big_Data/my_lab/final/football_recommender.zip
+/3.2/Big_Data/my_lab/lab1/data/
+/3.2/Big_Data/my_lab/lab4/data/
+/3.2/Big_Data/my_lab/lab5/data/
+/3.2/Big_Data/my_lab/lab6/data/
+/3.2/Big_Data/my_lab/lab7/data/
+
+# ============================================================
+# 大型模型权重 / 数据集（>50MB，避免仓库臃肿）
+# ============================================================
+*.pth
+*.onnx
+*.ckpt
+*.h5
+*.pt
+
+# ============================================================
+# 构建产物 / 缓存 / 临时文件
+# ============================================================
+# Visual Studio
+.vs/
+*.ipch
+*.pch
+*.db
+*.opendb
+*.suo
+*.sdf
+*.opensdf
+*.user
+*.ncb
+*.aps
+*.idb
+*.pdb
+*.ilk
+*.exp
+*.tlog
+*.lastbuildstate
+
+# 编译产物 / 二进制
+*.exe
+*.dll
+*.obj
+*.o
+*.a
+*.lib
+*.so
+*.dylib
+*.manifest
+*.dep
+*.intermediate.manifest
+*.res
+*.cache
+
+# 构建目录
+Debug/
+Release/
+x64/
+x86/
+bin/
+obj/
+build/
+.vscode/
+.idea/
+*.sln
+*.vcproj
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+_UpgradeReport_Files/
+Backup/
+
+# Vivado / ISE / FPGA 工程生成目录
+*.Xil/
+*.cache/
+*.runs/
+*.ip_user_files/
+*.sim/
+*.gen/
+*.hbs/
+*.hw/
+*.hw_export/
+**/*.srcs/*/ip/
+**/*.srcs/ip/
+*.vdi
+*.vds
+*.backup.vdi
+*.backup.vds
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+venv/
+.venv/
+env/
+ENV/
+virtualenv/
+
+# LaTeX 辅助文件
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+*.synctex.gz
+
+# 系统 / 编辑器
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
