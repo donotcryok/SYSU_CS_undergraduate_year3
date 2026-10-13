@@ -1,0 +1,2 @@
+L1DSize,L2Size,NumCycles,L1DCacheMisses,L2CacheMisses,L1DHitRate,L2HitRate
+32KiB,128KiB,13229865,165159,64933,97.2700,.0700

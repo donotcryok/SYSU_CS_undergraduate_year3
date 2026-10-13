@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h4 class="mb-0"><i class="bi bi-exclamation-triangle-fill"></i> 异常记录单</h4>
+            </div>
+            <div class="card-body p-5" style="background-color: #fffdf5;">
+                <form method="POST" action="{{ url_for('exception') }}">
+                    
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="vehicle_id" class="form-label fw-bold">涉事车辆</label>
+                            <select class="form-select" id="vehicle_id" name="vehicle_id" required>
+                                <option value="" selected disabled>-- 选择车辆 --</option>
+                                {% for vehicle in vehicles %}
+                                    <option value="{{ vehicle.VehicleID }}">{{ vehicle.PlateNumber }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="driver_id" class="form-label fw-bold">当事司机</label>
+                            <select class="form-select" id="driver_id" name="driver_id" required>
+                                <option value="" selected disabled>-- 选择司机 --</option>
+                                {% for driver in drivers %}
+                                    <option value="{{ driver.DriverID }}">{{ driver.Name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="event_type" class="form-label fw-bold">异常类型</label>
+                        <input type="text" class="form-control form-control-lg" id="event_type" name="event_type" required placeholder="例如: 车辆故障、交通事故、货物损坏">
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="occur_time" class="form-label fw-bold">发生时间</label>
+                            <input type="text" class="form-control" id="occur_time" name="occur_time" value="{{ current_time }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="fine_amount" class="form-label fw-bold">罚款金额 (元)</label>
+                            <div class="input-group">
+                                <span class="input-group-text">¥</span>
+                                <input type="number" step="0.01" class="form-control" id="fine_amount" name="fine_amount" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-warning btn-lg text-dark fw-bold">
+                            <i class="bi bi-file-earmark-x"></i> 提交异常报告
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

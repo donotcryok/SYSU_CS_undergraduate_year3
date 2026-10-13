@@ -1,0 +1,154 @@
+\documentclass[a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+\usepackage{zhnumber}
+\usepackage{adjustbox}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{inconsolata}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% 配置lstlisting支持中文
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    keywordstyle=\bfseries\color{blue},
+    commentstyle=\itshape\color{green!50!black},
+    stringstyle=\bfseries\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    backgroundcolor=\color{gray!5},
+    showstringspaces=false,
+    keepspaces=true,
+    tabsize=4,
+    extendedchars=true,
+    inputencoding=utf8,
+    literate={，}{{\textcolor{green!50!black}{，}}}{1}
+             {。}{{\textcolor{green!50!black}{。}}}{1}
+             {：}{{\textcolor{green!50!black}{：}}}{1}
+             {；}{{\textcolor{green!50!black}{；}}}{1}
+             {（}{{\textcolor{green!50!black}{（}}}{1}
+             {）}{{\textcolor{green!50!black}{）}}}{1}
+             {【}{{\textcolor{green!50!black}{【}}}{1}
+             {】}{{\textcolor{green!50!black}{】}}}{1}
+}
+
+\newcommand{\projname}{计算机网络实验|实验二}
+\newcommand{\reporttitle}{静态路由个人心得体会}
+\newcommand{\groupno}{第一组}
+\newcommand{\authorname}{马福泉}
+\newcommand{\major}{计算机科学与技术}
+\newcommand{\adviser}{谢逸}
+\newcommand{\startdate}{2025年10月20日}
+\newcommand{\labenddate}{2025年10月25日}
+\newcommand{\labroom}{实验D402}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\kaishu \projname}
+\fancyhead[C]{\kaishu \reporttitle}
+\fancyhead[R]{\kaishu \authorname}
+\fancyfoot[C]{第 \thepage 页}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\begin{document}
+
+% 封面
+\begin{titlepage}
+    \centering
+    \includegraphics[width=10cm]{img/SYSULogo.png}
+    \vspace{1em}
+    % 修改为换行并居中
+    \par
+    {\Large \kaishu
+        \par
+        \projname
+        \par
+    }
+    \vspace{3em}
+    {\fontsize{40pt}{42pt}\kaishu \selectfont \boldmath \reporttitle\par}
+    \vspace*{\fill}
+    \begin{center}
+    {\Large
+    \makebox[5em][s]{姓名}:\underline{\makebox[15em][c]{\kaishu 马福泉}}\\[1em]
+    \makebox[5em][s]{学号}:\underline{\makebox[15em][c]{\kaishu 23336179}}\\[1em]
+    \makebox[5em][s]{小组编号}:\underline{\makebox[15em][c]{\kaishu \groupno}}\\[1em]
+    \makebox[5em][s]{专业}:\underline{\makebox[15em][c]{\kaishu \major}}\\[1em]
+    \makebox[5em][s]{课程教师}:\underline{\makebox[15em][c]{\kaishu \adviser}}\\[1em]
+    \makebox[5em][s]{起始日期}:\underline{\makebox[15em][c]{\kaishu \startdate}}\\[1em]
+    \makebox[5em][s]{结束日期}:\underline{\makebox[15em][c]{\kaishu \labenddate}}\\[1em]
+    \makebox[5em][s]{实验地点}:\underline{\makebox[15em][c]{\kaishu \labroom}}
+    }
+    \end{center}
+    \vspace*{\fill}
+\end{titlepage}
+
+\section{承担的工作}
+
+\subsection{主要工作}
+\begin{itemize}
+    \item 负责连接实验设备，包括主机与路由器的物理连接，确保网线连接到正确端口并验证连接状态
+    \item 辅助为PC配置IP地址和子网掩码，协助完成网络配置
+    \item 辅助配置路由器接口地址并开启接口，参与R1和R2的GigabitEthernet接口IP地址配置和接口激活工作
+    \item 辅助配置路由器静态路由，协助完成双向静态路由的配置，确保PC1和PC2之间的互联互通
+    \item 对实验思考问题进行深入的资料搜寻和补充回答，完善对静态路由工作原理的理解
+    \item 后期对实验报告进行修改润色，优化报告结构和内容表达，完善思考问题的详细回答
+\end{itemize}
+
+\section{遇到的困难及解决方法}
+
+\subsection{物理连接相关问题}
+\begin{itemize}
+    \item \textbf{端口识别困难：}实验初期发现路由器端口编号不连续，容易连接错误。通过仔细查看路由器上的端口标签，并在连接后观察端口指示灯状态，确保物理连接的正确性。
+    \item \textbf{网线连接不稳定：}部分网线连接后指示灯未亮起或间歇性闪烁。通过更换质量较好的网线，并确保网线插头完全插入端口，解决了连接不稳定的问题。
+    \item \textbf{设备启动时序：}初期没有注意设备启动顺序，导致配置时出现异常。调整为先启动路由器、后启动PC的顺序，确保所有设备完全就绪后再进行配置。
+\end{itemize}
+
+\subsection{IP地址配置相关问题}
+\begin{itemize}
+    \item \textbf{网关配置遗漏：}在配置PC的IP地址时，初期忘记配置默认网关，导致后续路由测试异常。通过查阅网络配置手册，正确设置了PC的默认网关为对应路由器接口地址，解决了通信问题。
+\end{itemize}
+
+\subsection{理论理解相关问题}
+\begin{itemize}
+    \item \textbf{路由选择原理：}对多条路由存在时的选择机制理解不够深入。通过学习最长前缀匹配、管理距离、路由度量值等概念，深入理解了路由器的转发决策过程。
+    \item \textbf{静态路由与动态路由：}对静态路由的优缺点认识不够全面。通过对比分析，理解了静态路由在小型网络中的优势，以及在大型网络中维护困难的问题。
+\end{itemize}
+
+\section{体会与总结}
+
+\subsection{实验体会}
+\begin{itemize}
+    \item 通过本次静态路由实验，深入理解了路由器作为三层设备的核心功能，掌握了数据包转发的基本原理和路由表的作用机制。
+    \item 实践操作让我认识到网络配置中细节的重要性，任何一个小错误都可能导致整个网络通信失败，培养了严谨的工作态度。
+    \item 静态路由的手动配置过程让我体会到网络管理的复杂性，也更加理解了动态路由协议在大型网络中的重要意义。
+    \item 团队协作中的分工合作，让我提高了沟通协调能力。
+\end{itemize}
+
+\subsection{技术收获}
+\begin{itemize}
+    \item \textbf{路由原理掌握：}深入理解了路由器的工作原理，包括路由表查找、最长前缀匹配、下一跳转发等核心概念。
+    \item \textbf{网络配置技能：}掌握了华为路由器的基本配置命令，能够独立完成接口配置、静态路由配置等基本操作。
+    \item \textbf{故障排查方法：}学会了系统性的网络故障排查方法，从物理层到网络层的逐层分析思路。
+\end{itemize}
+
+\end{document}

@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card p-5 text-center">
+                <h1 class="display-4 text-primary">欢迎使用智慧物流管理系统</h1>
+                <p class="lead text-muted">高效 · 智能 · 安全</p>
+                <hr class="my-4">
+                <p>请从左侧导航栏选择功能模块进行操作。</p>
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <a class="btn btn-primary btn-lg" href="{{ url_for('allocate') }}" role="button">
+                        <i class="bi bi-box-seam"></i> 开始分配运单
+                    </a>
+                    <a class="btn btn-outline-secondary btn-lg" href="{{ url_for('report') }}" role="button">
+                        <i class="bi bi-graph-up"></i> 查看报表
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-header">系统状态</div>
+                <div class="card-body">
+                    <h5 class="card-title">运行正常</h5>
+                    <p class="card-text">数据库连接稳定，服务运行中。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-header">今日运单</div>
+                <div class="card-body">
+                    <h5 class="card-title">待处理</h5>
+                    <p class="card-text">请前往运单分配模块查看详情。</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-header">异常提醒</div>
+                <div class="card-body">
+                    <h5 class="card-title">需关注</h5>
+                    <p class="card-text">请定期检查异常管理模块。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

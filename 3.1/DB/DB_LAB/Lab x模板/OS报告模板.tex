@@ -1,0 +1,150 @@
+\documentclass[a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{indentfirst}        % 首段缩进
+\setlength{\parindent}{2em}     % 缩进2字符
+\usepackage{zhnumber}           % 中文编号
+\usepackage[dvipsnames]{xcolor}
+
+%\newcommand{\college}{中山大学计算机学院}
+\newcommand{\projname}{操作系统原理实验| Lab0}
+\newcommand{\reporttitle}{环境搭建与实验准备}
+\newcommand{\stuno}{23336188}
+\newcommand{\authorname}{欧阳易芃}
+\newcommand{\major}{计算机科学与技术}
+\newcommand{\adviser}{陈鹏飞}
+\newcommand{\startdate}{2025年3月1日}
+\newcommand{\labenddate}{2025年3月2日}
+\newcommand{\labroom}{超算中心307}
+
+\pagestyle{fancy} % 使用 fancyhdr 风格
+\fancyhf{}      % 清空默认的页眉页脚
+
+% 设置页眉
+\fancyhead[L]{\kaishu \projname}      % 左侧页眉显示项目名称
+\fancyhead[C]{\kaishu \reporttitle}    % 中间页眉显示报告标题
+\fancyhead[R]{\kaishu \authorname} % 右侧页眉显示作者姓名
+
+% 设置页脚
+\fancyfoot[C]{第 \thepage 页，共 \pageref{LastPage} 页} % 中间页脚显示页码
+
+% 去除页眉页脚与正文之间的分隔线
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% 设置文档背景颜色
+\definecolor{mybgcolor}{RGB}{0, 0, 0} % 定义背景颜色
+\definecolor{NavyBlue}{RGB}{0,0,128} % 添加颜色定义
+% \pagecolor{mybgcolor} % 设置背景颜色
+
+% listing 配置rust
+% \lstdefinelanguage{Rust}{
+%   keywords={fn, let, mut, struct, enum, impl, pub, use, mod, trait, where},
+%   keywordstyle=\color{NavyBlue},
+%   comment=[l]{//},
+%   commentstyle=\color{gray},
+% }
+% \lstset{language=Rust}
+
+\begin{document}
+
+% 封面
+\begin{titlepage}
+    \centering
+    
+
+    \includegraphics[width=10cm]{img/SYSULogo.png}
+
+    \vspace{1em}
+    %{\Large \college \par}
+    \vspace{1em}
+    {\Large \kaishu \projname \par}
+    \vspace{3em}
+
+    
+
+    
+    {\fontsize{40pt}{42pt}\kaishu \selectfont \boldmath \reporttitle\par}
+    \vspace*{\fill}
+
+    \begin{center}
+    {\Large
+    \makebox[5em][s]{学号}:\underline{\makebox[15em][c]{\kaishu \stuno}}\\[1em]
+    \makebox[5em][s]{姓名}:\underline{\makebox[15em][c]{\kaishu \authorname}}\\[1em]
+    \makebox[5em][s]{专业}:\underline{\makebox[15em][c]{\kaishu \major}}\\[1em]
+    \makebox[5em][s]{指导教师}:\underline{\makebox[15em][c]{\kaishu \adviser}}\\[1em]
+    \makebox[5em][s]{起始日期}:\underline{\makebox[15em][c]{\kaishu \startdate}}\\[1em]
+    \makebox[5em][s]{结束日期}:\underline{\makebox[15em][c]{\kaishu \labenddate}}\\[1em]
+    \makebox[5em][s]{实验地点}:\underline{\makebox[15em][c]{\kaishu \labroom}}
+    }
+    \end{center}
+
+    \vspace*{\fill}
+\end{titlepage}
+
+% 目录
+\tableofcontents
+\newpage
+
+\section{实验概述}
+
+\subsection{实验目的}
+
+\begin{enumerate}
+    \item 了解页表的作用、ELF 文件格式、操作系统在 x86 架构的基本启动过程。
+    \item 尝试使用 UEFI 加载并跳转到内核执行内核代码。
+    \item 实现基于 uart16550 的串口驱动，使用宏启用输出能力、并启用日志系统。
+    \item 学习并尝试使用调试器对内核进行调试。\cite{ref1}
+\end{enumerate}
+
+\subsection{实验内容}
+
+\begin{enumerate}
+    \item 编译内核ELF
+    \item 在UEFI中加载内核
+    \item UART与日志输出\cite{ref1}
+\end{enumerate}
+
+\section{实验步骤与结果}
+
+\subsection{【实验一】配置实验环境}
+
+
+\section{总结与创新}
+
+\subsection{思考题}
+
+
+\subsection{加分项}
+
+
+
+\subsection{实验总结}
+
+在本次实验中，我配置好了实验环境，学习了基础的Rust，了解了OVMF/UEFI/QEMU等名词，探索了UEFI Shell，编译运行了第一个UEFI程序，并且完成了更加深入的一些加分题。在过程中我对于OS的理解更深一步，也为后续的实验打下了基础。
+
+\section{对实验的改进建议和意见}
+
+\section{附录参考资料}
+\begin{thebibliography}{99}  
+
+    \bibitem{ref1}Haoyu Chen. (2024). 中山大学 YatSenOS v2 操作系统实验教程. Website. https://ysos.gzti.me/
+    \bibitem{ref2}KIMI AI. (2025). AI协作内容. Website. https://kimi.moonshot.cn/
+
+\end{thebibliography}
+
+\section{附录代码清单}
+
+本实验的代码较多，并且没有很重要的代码，完整代码请参见./Code目录下的代码文件，在对应文件夹下有readme文件说明。
+
+\end{document}

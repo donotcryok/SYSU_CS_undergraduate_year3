@@ -1,0 +1,241 @@
+\documentclass[a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+\usepackage{zhnumber}
+\usepackage{adjustbox}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{inconsolata}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% 配置lstlisting支持中文
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    keywordstyle=\bfseries\color{blue},
+    commentstyle=\itshape\color{green!50!black},
+    stringstyle=\bfseries\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    backgroundcolor=\color{gray!5},
+    showstringspaces=false,
+    keepspaces=true,
+    tabsize=4,
+    extendedchars=true,
+    inputencoding=utf8,
+    literate={，}{{\textcolor{green!50!black}{，}}}{1}
+             {。}{{\textcolor{green!50!black}{。}}}{1}
+             {：}{{\textcolor{green!50!black}{：}}}{1}
+             {；}{{\textcolor{green!50!black}{；}}}{1}
+             {（}{{\textcolor{green!50!black}{（}}}{1}
+             {）}{{\textcolor{green!50!black}{）}}}{1}
+             {【}{{\textcolor{green!50!black}{【}}}{1}
+             {】}{{\textcolor{green!50!black}{】}}}{1}
+}
+
+\newcommand{\projname}{计算机网络实验|实验六}
+\newcommand{\reporttitle}{VLAN个人心得体会}
+\newcommand{\groupno}{第一组}
+\newcommand{\authorname}{马福泉}
+\newcommand{\major}{计算机科学与技术}
+\newcommand{\adviser}{谢逸}
+\newcommand{\startdate}{2025年11月8日}
+\newcommand{\labenddate}{2025年11月22日}
+\newcommand{\labroom}{实验D402}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\kaishu \projname}
+\fancyhead[C]{\kaishu \reporttitle}
+\fancyhead[R]{\kaishu \authorname}
+\fancyfoot[C]{第 \thepage 页}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\begin{document}
+
+% 封面
+\begin{titlepage}
+    \centering
+    \includegraphics[width=10cm]{img/SYSULogo.png}
+    \vspace{1em}
+    % 修改为换行并居中
+    \par
+    {\Large \kaishu
+        \par
+        \projname
+        \par
+    }
+    \vspace{3em}
+    {\fontsize{40pt}{42pt}\kaishu \selectfont \boldmath \reporttitle\par}
+    \vspace*{\fill}
+    \begin{center}
+    {\Large
+    \makebox[5em][s]{姓名}:\underline{\makebox[15em][c]{\kaishu 马福泉}}\\[1em]
+    \makebox[5em][s]{学号}:\underline{\makebox[15em][c]{\kaishu 23336179}}\\[1em]
+    \makebox[5em][s]{小组编号}:\underline{\makebox[15em][c]{\kaishu \groupno}}\\[1em]
+    \makebox[5em][s]{专业}:\underline{\makebox[15em][c]{\kaishu \major}}\\[1em]
+    \makebox[5em][s]{课程教师}:\underline{\makebox[15em][c]{\kaishu \adviser}}\\[1em]
+    \makebox[5em][s]{起始日期}:\underline{\makebox[15em][c]{\kaishu \startdate}}\\[1em]
+    \makebox[5em][s]{结束日期}:\underline{\makebox[15em][c]{\kaishu \labenddate}}\\[1em]
+    \makebox[5em][s]{实验地点}:\underline{\makebox[15em][c]{\kaishu \labroom}}
+    }
+    \end{center}
+    \vspace*{\fill}
+\end{titlepage}
+
+\section{承担的工作}
+在本次VLAN跨交换机实现实验中，我主要承担了以下工作：
+\subsection{前期拓扑图设计}
+\begin{itemize}
+    \item \textbf{网络拓扑规划}：根据实验要求，我和队友共同设计了基础实验和拓展实验的网络拓扑结构
+    \begin{itemize}
+        \item 基础实验：设计PC1、PC2、PC3与交换机A、交换机B的连接关系
+        \item 拓展实验：设计分层网络架构，包含弱电箱区域（S1）和客厅区域（S2）
+    \end{itemize}
+    \item \textbf{VLAN规划设计}：制定基于业务类型的VLAN划分方案
+    \begin{itemize}
+        \item VLAN 10：普通用户业务（PC1、PC2、网络源L1）
+        \item VLAN 20：高级用户业务（PC3）
+        \item VLAN 30：IPTV专用业务（IPTV源L2、机顶盒L3）
+    \end{itemize}
+    \item \textbf{物理连接设计}：确定各设备间的物理连线方式和端口分配方案
+\end{itemize}
+
+\subsection{基础实验配置}
+\begin{itemize}
+    \item \textbf{实验环境搭建}：
+    \begin{itemize}
+        \item 负责连接PC1、PC2、PC3与交换机A、交换机B的物理连线
+        \item 按照设计的拓扑图完成所有设备的物理连接
+        \item 验证物理连接的正确性和稳定性
+    \end{itemize}
+    \item \textbf{主机IP配置}：
+    \begin{itemize}
+        \item 本人负责为PC3主机配置静态IP地址（192.168.10.30）
+        \item 使用netsh命令进行网络接口配置
+        \item 进行初始连通性测试，验证所有设备在同一广播域内可以正常通信
+    \end{itemize}
+\end{itemize}
+
+\subsection{实现与调试}
+本人协助队友共同实现了整个实验，全程参与，下面仅列出主要负责部分
+\begin{itemize}
+    \item \textbf{Trunk链路配置}：
+    \begin{itemize}
+        \item 在交换机A的G0/0/24端口配置Trunk模式
+        \item 在交换机B的G0/0/24端口配置Trunk模式
+        \item 验证Trunk链路的正常工作状态
+    \end{itemize}
+    \item \textbf{拓展实验高级配置}：
+    \begin{itemize}
+        \item 在S1交换机上创建VLAN 10、20、30并进行端口划分
+        \item 实现ACL访问控制，精确控制不同VLAN间的访问权限
+    \end{itemize}
+    \item \textbf{连通性测试}：
+    \begin{itemize}
+        \item 系统性地测试各设备间的网络连通性
+        \item 验证同VLAN内设备可以正常通信
+        \item 验证不同VLAN间设备无法直接通信
+        \item 测试跨交换机的VLAN通信功能
+    \end{itemize}
+    \item \textbf{业务功能验证}：
+    \begin{itemize}
+        \item 验证PC1、PC2、PC3均能访问互联网（L1）
+    \end{itemize}
+    \item \textbf{故障排除}：
+    \begin{itemize}
+        \item 排查Trunk链路配置问题，发现交换机B未创建相应VLAN
+        \item 解决Windows防火墙阻止ICMP协议的问题
+        \item 调试ACL规则，确保访问控制的精确性
+        \item 使用display命令检查配置状态，定位问题原因
+    \end{itemize}
+\end{itemize}
+
+\subsection{实验报告编写}
+\begin{itemize}
+    \item \textbf{文档整理与格式化}：
+    \begin{itemize}
+        \item 统一代码块格式和图片布局
+        \item 完善目录结构和章节编号
+        \item 检查文档的完整性和准确性
+    \end{itemize}
+\end{itemize}
+
+\section{遇到的困难及解决方法}
+
+\subsection{Trunk链路配置问题}
+\textbf{困难描述：}在配置交换机间Trunk链路时，虽然配置了\lstinline{port trunk allow-pass vlan all}，但PC2和PC3仍无法通信。
+
+\textbf{解决方法：}
+\begin{itemize}
+    \item 发现问题在于交换机B上未创建相应的VLAN，导致VLAN 20的数据无法正确处理
+    \item 在交换机B上创建VLAN 20，并将PC3所在端口划分到VLAN 20
+    \item 验证两端交换机都配置了相同的Trunk模式，确保VLAN数据能够双向传输
+\end{itemize}
+
+\subsection{拓展实验中的ACL配置挑战}
+\textbf{困难描述：}在实现复杂的访问控制需求时，ACL规则配置比较复杂，需要精确控制不同VLAN间的访问权限。
+
+\textbf{解决方法：}
+\begin{itemize}
+    \item 仔细分析业务需求，明确哪些设备间需要通信，哪些需要隔离
+    \item 使用高级ACL（编号3025）创建精细化访问控制规则
+\end{itemize}
+
+\subsection{防火墙干扰问题}
+\textbf{困难描述：}在测试IPTV设备（L2和L3）连通性时，ping测试失败，怀疑是网络配置问题。
+
+\textbf{解决方法：}
+\begin{itemize}
+    \item 经过排查发现是Windows防火墙阻止了ICMP协议
+    \item 关闭L2和L3设备的防火墙后，ping测试成功
+    \item 学会了在网络测试中要考虑操作系统层面的安全设置影响
+\end{itemize}
+
+\section{体会与总结}
+
+\subsection{技术技能提升}
+通过本次实验，我在网络技术方面获得了显著提升：
+\begin{itemize}
+    \item \textbf{VLAN技术掌握}：深入理解了VLAN的工作原理，掌握了基于端口的VLAN划分方法
+    \item \textbf{交换机配置能力}：熟练掌握了华为交换机的基本配置命令，能够独立完成VLAN创建、端口划分、Trunk配置等操作
+    \item \textbf{网络规划设计}：学会了根据实际业务需求进行VLAN规划，实现网络的逻辑分段和流量隔离
+    \item \textbf{故障排除能力}：提高了网络故障诊断和解决能力，学会使用各种显示命令检查配置状态
+\end{itemize}
+
+\subsection{实验方法论收获}
+\begin{itemize}
+    \item \textbf{系统性思维}：学会了将复杂的网络需求分解为具体的配置步骤，按部就班地实现目标
+    \item \textbf{测试驱动}：每完成一个配置步骤都要进行连通性测试，及时发现和解决问题
+    \item \textbf{文档化习惯}：养成了记录配置命令和测试结果的习惯，便于问题追溯和经验总结
+\end{itemize}
+
+\subsection{团队协作体验}
+在团队协作过程中，我学会了：
+\begin{itemize}
+    \item \textbf{任务分工}：根据各自的技术特长合理分配实验任务，提高实验效率
+    \item \textbf{知识共享}：在遇到困难时主动与队友交流讨论，共同寻找解决方案
+    \item \textbf{相互支持}：在队友遇到问题时提供帮助，形成了良好的团队学习氛围
+\end{itemize}
+
+总的来说，本次VLAN实验让我从理论走向实践，不仅掌握了具体的技术技能，更重要的是培养了系统性的网络思维和解决问题的能力。这为我后续的专业学习奠定了坚实的基础。
+\end{document}

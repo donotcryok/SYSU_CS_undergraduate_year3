@@ -1,0 +1,109 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="card shadow-sm">
+            <div class="card-header bg-white">
+                <ul class="nav nav-tabs card-header-tabs" id="entryTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="driver-tab" data-bs-toggle="tab" data-bs-target="#driver" type="button" role="tab" aria-controls="driver" aria-selected="true">
+                            <i class="bi bi-person-badge"></i> 录入司机
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="vehicle-tab" data-bs-toggle="tab" data-bs-target="#vehicle" type="button" role="tab" aria-controls="vehicle" aria-selected="false">
+                            <i class="bi bi-truck"></i> 录入车辆
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body p-4">
+                <div class="tab-content" id="entryTabContent">
+                    
+                    <div class="tab-pane fade show active" id="driver" role="tabpanel" aria-labelledby="driver-tab">
+                        <h5 class="card-title mb-4">填写新司机信息</h5>
+                        <form method="POST" action="{{ url_for('entry') }}">
+                            <input type="hidden" name="form_type" value="driver">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">姓名</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="license_grade" class="form-label">驾照等级 <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="license_grade" name="license_grade" required>
+                                        <option value="" selected disabled>请选择等级</option>
+                                        <option value="A1">A1 (大型客车)</option>
+                                        <option value="A2">A2 (牵引车)</option>
+                                        <option value="B1">B1 (中型客车)</option>
+                                        <option value="B2">B2 (大型货车)</option>
+                                        <option value="C1">C1 (小型汽车)</option>
+                                    </select>
+                                    <div class="invalid-feedback">请选择有效的驾照等级。</div>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">联系电话</label>
+                                    <input type="text" class="form-control" id="phone" name="phone" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fleet_id_driver" class="form-label">所属车队</label>
+                                    <select class="form-select" id="fleet_id_driver" name="fleet_id" required>
+                                        {% for fleet in fleets %}
+                                            <option value="{{ fleet.FleetID }}">{{ fleet.FleetName }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success">
+                                <i class="bi bi-save"></i> 保存司机信息
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="tab-pane fade" id="vehicle" role="tabpanel" aria-labelledby="vehicle-tab">
+                        <h5 class="card-title mb-4">填写新车辆信息</h5>
+                        <form method="POST" action="{{ url_for('entry') }}">
+                            <input type="hidden" name="form_type" value="vehicle">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="plate" class="form-label">车牌号 <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="plate" name="plate" 
+                                           required 
+                                           pattern="^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领]{1}[A-Z]{1}[A-Z0-9]{4}[A-Z0-9挂学警港澳]{1}$"
+                                           placeholder="例如: 京A88888"
+                                           title="请输入合法的中国车牌号 (如: 京A88888)">
+                                    <div class="invalid-feedback">格式不正确，请输入标准的中国车牌号。</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="fleet_id_vehicle" class="form-label">所属车队</label>
+                                    <select class="form-select" id="fleet_id_vehicle" name="fleet_id" required>
+                                        {% for fleet in fleets %}
+                                            <option value="{{ fleet.FleetID }}">{{ fleet.FleetName }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="max_weight" class="form-label">最大载重 (kg)</label>
+                                    <input type="number" step="0.01" class="form-control" id="max_weight" name="max_weight" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="max_volume" class="form-label">最大体积 (m³)</label>
+                                    <input type="number" step="0.01" class="form-control" id="max_volume" name="max_volume" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="bi bi-save"></i> 保存车辆信息
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

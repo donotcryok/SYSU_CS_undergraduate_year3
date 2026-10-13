@@ -1,0 +1,15 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+<div style="text-align: center; padding: 50px;">
+    <h1>JY 图书借阅数据库系统</h1>
+    <hr>
+    <div style="margin-top: 50px;">
+        <div style="background: #3498db; color: white; padding: 30px; display: inline-block; border-radius: 10px; min-width: 200px;">
+            <h3>馆藏图书总量</h3>
+            <p style="font-size: 3em; margin: 10px 0;">{{ book_count }}</p>
+            <a href="{% url 'book_list' %}" style="color: #fff; text-decoration: underline; font-size: 1.2em;">进入管理列表 &rarr;</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

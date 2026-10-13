@@ -1,0 +1,43 @@
+{% extends 'books/base.html' %}
+
+{% block content %}
+<h2>{{ title }}</h2>
+<hr>
+<form method="post">
+    {% csrf_token %} <!-- 安全令牌，必须加 -->
+    
+    <div class="form-group">
+            <label>图书编号：</label>
+            {{ form.book_id }}
+        </div>
+        <div class="form-group">
+            <label>图书名称：</label>
+            {{ form.book_name }}
+        </div>
+        <div class="form-group">
+            <label>ISBN：</label>
+            {{ form.book_isbn }}
+        </div>
+        <div class="form-group">
+            <label>作者：</label>
+            {{ form.book_author }}
+        </div>
+        <div class="form-group">
+            <label>出版社：</label>
+            {{ form.book_publisher }}
+        </div>
+        <div class="form-group">
+            <label>价格：</label>
+            {{ form.book_price }}
+        </div>
+        <div class="form-group">
+            <label>借阅次数：</label>
+            {{ form.interviews_times }}
+        </div>
+
+    <div style="margin-top: 20px;">
+        <button type="submit" class="btn btn-primary">保存提交</button>
+        <a href="{% url 'book_list' %}" class="btn" style="background-color: #95a5a6;">取消返回</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,222 @@
+\documentclass[a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{indentfirst}
+\setlength{\parindent}{2em}
+\usepackage{zhnumber}
+\usepackage{adjustbox}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{lmodern}
+\usepackage{inconsolata}
+\usepackage{multirow}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% 配置lstlisting支持中文
+\lstset{
+    language=C,
+    basicstyle=\footnotesize\ttfamily,
+    breaklines=true,
+    keywordstyle=\bfseries\color{blue},
+    commentstyle=\itshape\color{green!50!black},
+    stringstyle=\bfseries\color{red},
+    numbers=left,
+    numberstyle=\tiny\color{gray},
+    frame=single,
+    backgroundcolor=\color{gray!5},
+    showstringspaces=false,
+    keepspaces=true,
+    tabsize=4,
+    extendedchars=true,
+    inputencoding=utf8,
+    literate={，}{{\textcolor{green!50!black}{，}}}{1}
+             {。}{{\textcolor{green!50!black}{。}}}{1}
+             {：}{{\textcolor{green!50!black}{：}}}{1}
+             {；}{{\textcolor{green!50!black}{；}}}{1}
+             {（}{{\textcolor{green!50!black}{（}}}{1}
+             {）}{{\textcolor{green!50!black}{）}}}{1}
+             {【}{{\textcolor{green!50!black}{【}}}{1}
+             {】}{{\textcolor{green!50!black}{】}}}{1}
+}
+
+\newcommand{\projname}{计算机网络实验|实验二}
+\newcommand{\reporttitle}{网络编程个人心得体会}
+\newcommand{\groupno}{第一组}
+\newcommand{\authorname}{马福泉}
+\newcommand{\major}{计算机科学与技术}
+\newcommand{\adviser}{谢逸}
+\newcommand{\startdate}{2025年10月1日}
+\newcommand{\labenddate}{2025年10月10日}
+\newcommand{\labroom}{实验D402}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\kaishu \projname}
+\fancyhead[C]{\kaishu \reporttitle}
+\fancyhead[R]{\kaishu \authorname}
+\fancyfoot[C]{第 \thepage 页}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+
+\begin{document}
+
+% 封面
+\begin{titlepage}
+    \centering
+    \includegraphics[width=10cm]{img/SYSULogo.png}
+    \vspace{1em}
+    % 修改为换行并居中
+    \par
+    {\Large \kaishu
+        \par
+        \projname
+        \par
+    }
+    \vspace{3em}
+    {\fontsize{40pt}{42pt}\kaishu \selectfont \boldmath \reporttitle\par}
+    \vspace*{\fill}
+    \begin{center}
+    {\Large
+    \makebox[5em][s]{姓名}:\underline{\makebox[15em][c]{\kaishu 马福泉}}\\[1em]
+    \makebox[5em][s]{学号}:\underline{\makebox[15em][c]{\kaishu 23336179}}\\[1em]
+    \makebox[5em][s]{小组编号}:\underline{\makebox[15em][c]{\kaishu \groupno}}\\[1em]
+    \makebox[5em][s]{专业}:\underline{\makebox[15em][c]{\kaishu \major}}\\[1em]
+    \makebox[5em][s]{课程教师}:\underline{\makebox[15em][c]{\kaishu \adviser}}\\[1em]
+    \makebox[5em][s]{起始日期}:\underline{\makebox[15em][c]{\kaishu \startdate}}\\[1em]
+    \makebox[5em][s]{结束日期}:\underline{\makebox[15em][c]{\kaishu \labenddate}}\\[1em]
+    \makebox[5em][s]{实验地点}:\underline{\makebox[15em][c]{\kaishu \labroom}}
+    }
+    \end{center}
+    \vspace*{\fill}
+\end{titlepage}
+
+\section{承担的工作}
+
+\subsection{主要工作}
+\begin{itemize}
+    \item 查询相关资料，梳理和回答大部分实验思考问题
+    \item 负责拓展实验部分的代码编写，包括TCP聊天室的服务器和客户端实现
+    \item 进行拓展实验的实际操作、截图和实验报告撰写
+    \item 整理和完善拓展试验部分的内容，确保报告结构和逻辑清晰
+\end{itemize}
+
+\subsection{次要工作}
+\begin{itemize}
+    \item 前期参与实验环境的检查和配置，确保网络和主机设置正确
+    \item 辅助完成UDP通信的基本实验任务
+    \item 后期参与实验报告的检查、排版和润色，提升整体质量
+\end{itemize}
+
+\section{遇到的困难及解决方法}
+
+\subsection{实验环境相关问题}
+\begin{itemize}
+    \item \textbf{网络环境配置：}实验开始时，发现部分主机IP地址未正确分配，导致无法互相ping通。通过重新配置IP地址，确保所有主机在同一网段，成功建立通信。
+    \item \textbf{防火墙阻碍：}Windows防火墙默认阻止了部分端口访问，导致UDP和TCP通信程序无法正常收发数据。通过关闭防火墙或添加程序例外，解决了端口阻塞问题。
+    \item \textbf{端口占用：}实验过程中发现8888/8889端口被其他程序占用，导致socket绑定失败。通过netstat命令查找并释放端口，保证实验顺利进行。
+\end{itemize}
+
+\subsection{拓展实验相关问题}
+\begin{itemize}
+    \item \textbf{消息广播机制：}最初广播消息时，部分客户端无法收到消息。经过调试，发现是数组索引和活跃状态判断不严谨，修正后保证所有在线客户端都能收到广播。具体问题在于broadcastMessage函数中的索引计算错误，修正代码如下：
+    
+    \begin{verbatim}
+// 修正前的问题代码（索引错误）
+broadcastMessage(broadcastMsg, client->id);  // 错误：使用ID而非数组索引
+
+// 修正后的代码
+broadcastMessage(broadcastMsg, client - clients);  // 正确：计算数组索引
+    \end{verbatim}
+    
+    \item \textbf{客户端异常断开处理：}部分客户端异常退出后，服务器端未能及时释放资源。通过完善异常处理流程，确保断开连接时正确清理套接字和状态。在handleClient函数中添加了完善的清理机制：
+    
+    \begin{verbatim}
+// 处理客户端消息循环
+while (1) {
+    bytesReceived = recv(client->socket, buffer, BUFFER_SIZE - 1, 0);
+    if (bytesReceived <= 0) {
+        // 客户端断开连接，立即清理资源
+        break;
+    }
+    // 处理消息...
+}
+
+// 确保在函数结束时清理客户端
+removeClient(client - clients);
+return 0;
+    \end{verbatim}
+    
+    \item \textbf{TCP连接建立超时：}初期测试中发现客户端连接服务器时偶尔会超时失败。分析原因是服务器端监听队列不足，通过调整listen函数的backlog参数解决：
+    
+    \begin{verbatim}
+// 修正前
+if (listen(serverSocket, 5) == SOCKET_ERROR) // 队列太小
+
+// 修正后  
+if (listen(serverSocket, SOMAXCONN) == SOCKET_ERROR) // 使用系统最大值
+    \end{verbatim}
+    
+    \item \textbf{用户名输入处理：}在接收用户名时遇到换行符处理问题，导致用户名显示异常。通过完善字符串处理逻辑解决：
+    
+    \begin{verbatim}
+// 接收用户名后的清理处理
+if (bytesReceived > 0) {
+    buffer[bytesReceived] = '\0';
+    // 移除所有可能的换行符
+    char* newline = strchr(buffer, '\n');
+    if (newline) *newline = '\0';
+    newline = strchr(buffer, '\r');
+    if (newline) *newline = '\0';
+    
+    if (strlen(buffer) > 0) {
+        strcpy(client->username, buffer);
+    }
+}
+    \end{verbatim}
+    
+    \item \textbf{网络抓包分析：}Wireshark抓包时，过滤条件设置不当导致无法准确捕获目标流量。通过调整过滤表达式（如tcp.port == 8889），成功定位三次握手和数据传输过程。实际使用的过滤条件包括：
+    \begin{itemize}
+        \item tcp.port == 8889  // 捕获指定端口的TCP流量
+        \item ip.addr == 172.16.27.2  // 捕获特定IP的数据包
+        \item tcp.flags.syn == 1  // 专门观察SYN包（连接建立）
+    \end{itemize}
+    
+    \item \textbf{编码兼容性问题：}在编写报告和代码时，遇到中文路径和特殊字符导致LaTeX编译报错。通过统一文件名为英文、规范代码块格式，解决了编译问题。主要修改包括：
+    \begin{itemize}
+        \item 将所有图片文件名改为英文：tcp\_server\_running.png
+        \item 统一使用UTF-8编码保存所有文件
+        \item 在代码中避免使用中文注释，改用英文注释
+    \end{itemize}
+\end{itemize}
+
+\section{体会与总结}
+
+\subsection{实验体会}
+\begin{itemize}
+    \item 通过本次实验，深入理解了TCP与UDP协议的区别，掌握了Socket编程的基本流程和多线程并发处理技术。
+    \item 拓展实验部分让我体会到网络编程的复杂性，尤其是在多客户端环境下，线程安全和资源管理尤为重要。
+    \item 实践中遇到的各种问题，促使我查阅文档、调试代码，提升了独立解决问题的能力。
+    \item 使用Wireshark进行数据包分析，直观感受到了协议层的实际工作过程，对网络通信有了更深刻的认识。
+\end{itemize}
+
+\subsection{总结}
+\begin{itemize}
+    \item 本次实验不仅提升了我的编程能力，更加深了对计算机网络原理的理解。
+    \item 团队协作和分工明确，有效提高了实验效率和报告质量。
+    \item 通过拓展实验的设计与实现，掌握了多客户端聊天室的核心技术，为后续学习分布式系统和网络应用开发打下了坚实基础。
+    \item 遇到问题时主动查找资料和交流讨论，是解决技术难题的有效途径。
+\end{itemize}
+
+\end{document}

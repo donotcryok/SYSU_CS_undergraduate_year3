@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>JY 图书借阅管理系统</title>
+    <style>
+        body { font-family: "微软雅黑", sans-serif; background-color: #f4f4f9; margin: 0; }
+        /* 导航栏样式 */
+        .navbar { background-color: #2c3e50; padding: 15px; color: white; }
+        .navbar a { color: white; text-decoration: none; margin-right: 20px; font-weight: bold; }
+        .navbar a:hover { color: #f1c40f; }
+        /* 内容区域 */
+        .container { width: 80%; margin: 20px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        /* 按钮通用样式 */
+        .btn { padding: 8px 15px; text-decoration: none; border-radius: 4px; color: white; display: inline-block;}
+        .btn-primary { background-color: #3498db; border: none; cursor: pointer;}
+        .btn-danger { background-color: #e74c3c; border: none; cursor: pointer;}
+        .btn-edit { background-color: #f39c12; }
+        /* 表格样式 */
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; border-bottom: 1px solid #ddd; text-align: left; }
+        th { background-color: #ecf0f1; }
+        /* 表单样式 */
+        .form-group { margin-bottom: 15px; }
+        .form-control { width: 100%; padding: 8px; box-sizing: border-box; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span style="font-size: 1.2em;">JY 图书管理系统</span>
+        <span style="float: right;">
+              <a href="{% url 'index' %}">首页</a>
+              <a href="{% url 'book_list' %}">图书管理</a>
+        </span>
+    </div>
+
+    <div class="container">
+        {% block content %}
+        <!-- 这里的具体内容由子页面填充 -->
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+PhysRegs,IQEntries,ROBEntries,NumCycles,ROBFullEvents,IQFullEvents,FullRegistersEvents
+64,4,4,55597062,15963040,2650,
