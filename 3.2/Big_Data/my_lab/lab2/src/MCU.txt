@@ -1,0 +1,35 @@
+[SECTION: ORGANIZATIONS]
+ORG: 复仇者联盟
+ORG: 神盾局
+ORG: 光照会
+ORG: 银河护卫队
+ORG: 美国空军
+ORG: 秘密复仇者
+
+[SECTION: AFFILIATIONS]
+# 英雄 | 真名 | 所属组织
+HERO: 钢铁侠 | 托尼·斯塔克 | 复仇者联盟,  神盾局, 光照会
+HERO: 美国队长 | 史蒂夫·罗杰斯 | 复仇者联盟, 神盾局, 秘密复仇者
+HERO: 雷神 | 索尔·奥丁森 | 复仇者联盟, 银河护卫队
+HERO: 绿巨人 | 布鲁斯·班纳 | 复仇者联盟, 神盾局
+HERO: 黑寡妇 | 娜塔莎·罗曼诺夫 | 神盾局, 复仇者联盟, 秘密复仇者
+HERO: 鹰眼 | 克林特·巴顿 | 神盾局, 复仇者联盟
+HERO: 惊奇队长 | 卡罗尔·丹弗斯 | 美国空军, 复仇者联盟, 银河护卫队
+HERO: 蜘蛛侠 | 彼得·帕克 | 复仇者联盟
+HERO: 奇异博士 | 史蒂芬·斯特兰奇 |  光照会
+HERO: 幻视 | 幻视 | 复仇者联盟, 神盾局
+HERO: 战争机器 | 詹姆斯·罗德斯 | 美国空军, 复仇者联盟, 神盾局
+HERO: 猎鹰 | 山姆·威尔逊 | 美国空军, 复仇者联盟, 秘密复仇者
+
+[SECTION: RELATIONSHIPS]
+# 起点英雄 -> 关系类型 -> 终点英雄
+REL: 钢铁侠 -> MENTOR_OF -> 蜘蛛侠
+REL: 钢铁侠 -> FRIEND_OF -> 美国队长
+REL: 钢铁侠 -> CREATED -> 幻视
+REL: 美国队长 -> COMRADE -> 黑寡妇
+REL: 雷神 -> BROTHER_OF -> 洛基
+REL: 雷神 -> RIVAL -> 绿巨人
+REL: 绿巨人 -> LOVER_OF -> 黑寡妇
+REL: 鹰眼 -> BEST_FRIEND -> 黑寡妇
+REL: 猎鹰 -> SUCCESSOR_OF -> 美国队长
+REL: 奇异博士 -> STRATEGIC_PARTNER -> 钢铁侠

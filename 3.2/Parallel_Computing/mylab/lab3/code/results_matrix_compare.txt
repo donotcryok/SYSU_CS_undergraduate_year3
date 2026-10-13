@@ -1,0 +1,75 @@
+=============================================================================
+矩阵乘法策略对比测试结果
+测试时间: 2026-04-20 17:05:38
+策略: 0=Row-wise, 1=Column-wise, 2=Block-wise
+=============================================================================
+
+
+--- 矩阵规模: 512x512x512 ---
+
+策略: Row-wise
+Strategy: Row-wise, Size: 512 x 512 x 512, Threads: 1, Time: 1.769842 s
+Strategy: Row-wise, Size: 512 x 512 x 512, Threads: 2, Time: 0.869252 s
+Strategy: Row-wise, Size: 512 x 512 x 512, Threads: 4, Time: 0.405122 s
+Strategy: Row-wise, Size: 512 x 512 x 512, Threads: 8, Time: 0.195907 s
+Strategy: Row-wise, Size: 512 x 512 x 512, Threads: 16, Time: 0.159538 s
+
+策略: Column-wise
+Strategy: Column-wise, Size: 512 x 512 x 512, Threads: 1, Time: 1.626517 s
+Strategy: Column-wise, Size: 512 x 512 x 512, Threads: 2, Time: 0.787752 s
+Strategy: Column-wise, Size: 512 x 512 x 512, Threads: 4, Time: 0.390904 s
+Strategy: Column-wise, Size: 512 x 512 x 512, Threads: 8, Time: 0.211711 s
+Strategy: Column-wise, Size: 512 x 512 x 512, Threads: 16, Time: 0.169513 s
+
+策略: Block-wise
+Strategy: Block-wise, Size: 512 x 512 x 512, Threads: 1, Time: 1.780594 s
+Strategy: Block-wise, Size: 512 x 512 x 512, Threads: 2, Time: 0.867268 s
+Strategy: Block-wise, Size: 512 x 512 x 512, Threads: 4, Time: 0.407043 s
+Strategy: Block-wise, Size: 512 x 512 x 512, Threads: 8, Time: 0.194500 s
+Strategy: Block-wise, Size: 512 x 512 x 512, Threads: 16, Time: 0.186745 s
+
+--- 矩阵规模: 1024x1024x1024 ---
+
+策略: Row-wise
+Strategy: Row-wise, Size: 1024 x 1024 x 1024, Threads: 1, Time: 15.977846 s
+Strategy: Row-wise, Size: 1024 x 1024 x 1024, Threads: 2, Time: 7.557816 s
+Strategy: Row-wise, Size: 1024 x 1024 x 1024, Threads: 4, Time: 3.722077 s
+Strategy: Row-wise, Size: 1024 x 1024 x 1024, Threads: 8, Time: 1.926450 s
+Strategy: Row-wise, Size: 1024 x 1024 x 1024, Threads: 16, Time: 1.394814 s
+
+策略: Column-wise
+Strategy: Column-wise, Size: 1024 x 1024 x 1024, Threads: 1, Time: 13.506293 s
+Strategy: Column-wise, Size: 1024 x 1024 x 1024, Threads: 2, Time: 6.983101 s
+Strategy: Column-wise, Size: 1024 x 1024 x 1024, Threads: 4, Time: 3.348809 s
+Strategy: Column-wise, Size: 1024 x 1024 x 1024, Threads: 8, Time: 1.835041 s
+Strategy: Column-wise, Size: 1024 x 1024 x 1024, Threads: 16, Time: 1.286759 s
+
+策略: Block-wise
+Strategy: Block-wise, Size: 1024 x 1024 x 1024, Threads: 1, Time: 15.974874 s
+Strategy: Block-wise, Size: 1024 x 1024 x 1024, Threads: 2, Time: 7.636840 s
+Strategy: Block-wise, Size: 1024 x 1024 x 1024, Threads: 4, Time: 3.622137 s
+Strategy: Block-wise, Size: 1024 x 1024 x 1024, Threads: 8, Time: 1.610248 s
+Strategy: Block-wise, Size: 1024 x 1024 x 1024, Threads: 16, Time: 1.041358 s
+
+--- 矩阵规模: 2048x2048x2048 ---
+
+策略: Row-wise
+Strategy: Row-wise, Size: 2048 x 2048 x 2048, Threads: 1, Time: 247.645052 s
+Strategy: Row-wise, Size: 2048 x 2048 x 2048, Threads: 2, Time: 78.743629 s
+Strategy: Row-wise, Size: 2048 x 2048 x 2048, Threads: 4, Time: 35.182696 s
+Strategy: Row-wise, Size: 2048 x 2048 x 2048, Threads: 8, Time: 17.605590 s
+Strategy: Row-wise, Size: 2048 x 2048 x 2048, Threads: 16, Time: 12.293092 s
+
+策略: Column-wise
+Strategy: Column-wise, Size: 2048 x 2048 x 2048, Threads: 1, Time: 148.653160 s
+Strategy: Column-wise, Size: 2048 x 2048 x 2048, Threads: 2, Time: 79.180671 s
+Strategy: Column-wise, Size: 2048 x 2048 x 2048, Threads: 4, Time: 40.645268 s
+Strategy: Column-wise, Size: 2048 x 2048 x 2048, Threads: 8, Time: 29.537571 s
+Strategy: Column-wise, Size: 2048 x 2048 x 2048, Threads: 16, Time: 23.466027 s
+
+策略: Block-wise
+Strategy: Block-wise, Size: 2048 x 2048 x 2048, Threads: 1, Time: 156.881132 s
+Strategy: Block-wise, Size: 2048 x 2048 x 2048, Threads: 2, Time: 74.796254 s
+Strategy: Block-wise, Size: 2048 x 2048 x 2048, Threads: 4, Time: 35.222961 s
+Strategy: Block-wise, Size: 2048 x 2048 x 2048, Threads: 8, Time: 18.598459 s
+Strategy: Block-wise, Size: 2048 x 2048 x 2048, Threads: 16, Time: 11.434922 s

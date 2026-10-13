@@ -1,0 +1,79 @@
+# MPI Matrix Multiplication Performance Results
+# Format: Size: <N>, Procs: <P>, Time: <T> s
+# Generated on: Tue Apr  7 11:18:16 CST 2026
+# ============================================
+
+# Procs=1, Size=128
+Size: 128, Procs: 1, Time: 0.0063 s
+
+# Procs=1, Size=256
+Size: 256, Procs: 1, Time: 0.0762 s
+
+# Procs=1, Size=512
+Size: 512, Procs: 1, Time: 0.9434 s
+
+# Procs=1, Size=1024
+Size: 1024, Procs: 1, Time: 7.1551 s
+
+# Procs=1, Size=2048
+Size: 2048, Procs: 1, Time: 58.7634 s
+
+# Procs=2, Size=128
+Size: 128, Procs: 2, Time: 0.0034 s
+
+# Procs=2, Size=256
+Size: 256, Procs: 2, Time: 0.0410 s
+
+# Procs=2, Size=512
+Size: 512, Procs: 2, Time: 0.8475 s
+
+# Procs=2, Size=1024
+Size: 1024, Procs: 2, Time: 7.8624 s
+
+# Procs=2, Size=2048
+Size: 2048, Procs: 2, Time: 66.3320 s
+
+# Procs=4, Size=128
+Size: 128, Procs: 4, Time: 0.0029 s
+
+# Procs=4, Size=256
+Size: 256, Procs: 4, Time: 0.0258 s
+
+# Procs=4, Size=512
+Size: 512, Procs: 4, Time: 0.4372 s
+
+# Procs=4, Size=1024
+Size: 1024, Procs: 4, Time: 3.9162 s
+
+# Procs=4, Size=2048
+Size: 2048, Procs: 4, Time: 34.7804 s
+
+# Procs=8, Size=128
+Size: 128, Procs: 8, Time: 0.0036 s
+
+# Procs=8, Size=256
+Size: 256, Procs: 8, Time: 0.0197 s
+
+# Procs=8, Size=512
+Size: 512, Procs: 8, Time: 0.2366 s
+
+# Procs=8, Size=1024
+Size: 1024, Procs: 8, Time: 1.7962 s
+
+# Procs=8, Size=2048
+Size: 2048, Procs: 8, Time: 25.7218 s
+
+# Procs=16, Size=128
+Size: 128, Procs: 16, Time: 0.0290 s
+
+# Procs=16, Size=256
+Size: 256, Procs: 16, Time: 0.0392 s
+
+# Procs=16, Size=512
+Size: 512, Procs: 16, Time: 0.2835 s
+
+# Procs=16, Size=1024
+Size: 1024, Procs: 16, Time: 1.2938 s
+
+# Procs=16, Size=2048
+Size: 2048, Procs: 16, Time: 14.8895 s

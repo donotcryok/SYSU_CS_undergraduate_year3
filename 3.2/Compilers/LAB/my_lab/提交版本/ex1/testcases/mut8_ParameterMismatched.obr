@@ -1,0 +1,16 @@
+(* 错误类型：语义错误 — ParameterMismatched（过程调用的实参/形参数目不符）
+ * 在 ReadStudent 过程中调用 CalcTotalAndAvg 时多传了一个参数 *)
+PROCEDURE ReadStudent(VAR s : Student);
+VAR
+  k : INTEGER;
+BEGIN
+  Read(s.Id);
+  k := 0;
+  WHILE k < CourseCount DO
+    Read(s.Scores[k]);
+    k := k + 1
+  END;
+  (* CalcTotalAndAvg 声明为 PROCEDURE CalcTotalAndAvg(VAR s : Student)，
+   * 只接受 1 个参数，这里错误地多传了一个 0 *)
+  CalcTotalAndAvg(s, 0)   (* ERROR: 实参个数=2，形参个数=1，数目不匹配 *)
+END ReadStudent;

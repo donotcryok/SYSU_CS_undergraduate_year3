@@ -1,0 +1,396 @@
+\documentclass[a4paper]{article}
+
+\usepackage[UTF8]{ctex}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{color}
+\usepackage{indentfirst}        % 首段缩进
+\setlength{\parindent}{2em}     % 缩进2字符
+\usepackage{zhnumber}           % 中文编号
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}            % 数学公式
+
+%\newcommand{\college}{中山大学计算机学院}
+\newcommand{\projname}{大数据实验 | Lab6}
+\newcommand{\reporttitle}{图文多模态问答(VQA)实验}
+\newcommand{\stuno}{23336179}
+\newcommand{\authorname}{马福泉}
+\newcommand{\major}{计算机科学与技术}
+\newcommand{\adviser}{王昌栋}
+\newcommand{\startdate}{2026年4月13日}
+\newcommand{\labenddate}{2026年4月15日}
+\newcommand{\labroom}{B201}
+
+\pagestyle{fancy} % 使用 fancyhdr 风格
+\fancyhf{}      % 清空默认的页眉页脚
+
+% 设置页眉
+\fancyhead[L]{\kaishu \projname}      % 左侧页眉显示项目名称
+\fancyhead[C]{\kaishu \reporttitle}    % 中间页眉显示报告标题
+\fancyhead[R]{\kaishu \authorname} % 右侧页眉显示作者姓名
+
+% 设置页脚
+\fancyfoot[C]{第 \thepage 页，共 \pageref{LastPage} 页} % 中间页脚显示页码
+
+% 去除页眉页脚与正文之间的分隔线
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% 设置文档背景颜色
+\definecolor{mybgcolor}{RGB}{0, 0, 0} % 定义背景颜色
+\definecolor{NavyBlue}{RGB}{0,0,128} % 添加颜色定义
+% \pagecolor{mybgcolor} % 设置背景颜色
+
+% listing 配置python
+\definecolor{commentgreen}{RGB}{2,112,10}
+\definecolor{eminence}{RGB}{108,48,130}
+\definecolor{weborange}{RGB}{255,165,0}
+\definecolor{frenchplum}{RGB}{129,20,83}
+
+\lstdefinelanguage{python}{%
+    morekeywords={def, for, range, abs, return, class, int, float, if, elif, else, while, print, import, from, as, try, except, with, True, False, None, self, super, in, not, and, or, is, for, yield, lambda, pass, break, continue, raise, finally, assert, global, del},%
+    otherkeywords={<, >, =, +, -, *, /, ==, !=, <=, >=, \%},%  <-- 修改了这里，将 % 改为了 \%
+    keywordstyle=\color{NavyBlue}\bfseries,%
+    commentstyle=\color{commentgreen}\itshape,%
+    stringstyle=\color{frenchplum},%
+    basicstyle=\ttfamily\small,%
+    breaklines=true,%
+    showstringspaces=false,%
+    frame=single,%
+    tabsize=4}
+\lstset{language=python}
+
+\begin{document}
+
+% 封面
+\begin{titlepage}
+    \centering
+    
+
+    \includegraphics[width=10cm]{img/SYSULogo.png}
+
+    \vspace{1em}
+    %{\Large \college \par}
+    \vspace{1em}
+    {\Large \kaishu \projname \par}
+    \vspace{3em}
+
+    
+
+    
+    {\fontsize{40pt}{42pt}\kaishu \selectfont \boldmath \reporttitle\par}
+    \vspace*{\fill}
+
+    \begin{center}
+    {\Large
+    \makebox[5em][s]{学号}:\underline{\makebox[15em][c]{\kaishu \stuno}}\\[1em]
+    \makebox[5em][s]{姓名}:\underline{\makebox[15em][c]{\kaishu \authorname}}\\[1em]
+    \makebox[5em][s]{专业}:\underline{\makebox[15em][c]{\kaishu \major}}\\[1em]
+    \makebox[5em][s]{指导教师}:\underline{\makebox[15em][c]{\kaishu \adviser}}\\[1em]
+    \makebox[5em][s]{起始日期}:\underline{\makebox[15em][c]{\kaishu \startdate}}\\[1em]
+    \makebox[5em][s]{结束日期}:\underline{\makebox[15em][c]{\kaishu \labenddate}}\\[1em]
+    \makebox[5em][s]{实验地点}:\underline{\makebox[15em][c]{\kaishu \labroom}}
+    }
+    \end{center}
+
+    \vspace*{\fill}
+\end{titlepage}
+
+% 目录
+\tableofcontents
+\newpage
+
+\section{实验要求}
+
+本次实验为作业-6：图文多模态问答(VQA)。实验要求如下：
+
+\begin{enumerate}
+    \item 使用 ViLT 预训练模型（基于 Hugging Face 库）
+    \item 实现图片与文本问题的联合输入
+    \item 输出模型预测的答案
+    \item 可自定义问题，如"图中有什么动物？"等
+\end{enumerate}
+
+\section{思路分析}
+
+\subsection{ViLT 模型简介}
+
+ViLT (Vision-and-Language Transformer) 是一种将视觉和语言信息统一处理的 Transformer 模型。与传统的视觉-语言模型不同，ViLT 采用了无卷积的架构设计，直接将图像 patch 和文本 token 输入到统一的 Transformer 中进行处理。
+
+\subsection{模型选择}
+
+本实验使用 Hugging Face 提供的预训练模型：
+\begin{itemize}
+    \item \textbf{模型名称}: \texttt{dandelin/vilt-b32-finetuned-vqa}
+    \item \textbf{基础架构}: ViLT-B/32
+    \item \textbf{训练数据}: VQAv2 数据集
+    \item \textbf{任务}: 视觉问答 (Visual Question Answering)
+\end{itemize}
+
+\subsection{实现原理}
+
+\begin{enumerate}
+    \item \textbf{图像处理}: 将输入图像分割成固定大小的 patch，通过线性投影转换为向量表示
+    \item \textbf{文本处理}: 使用 BERT tokenizer 对问题文本进行分词和编码
+    \item \textbf{特征融合}: 将图像 patch embedding 和文本 token embedding 拼接，输入 Transformer Encoder
+    \item \textbf{答案预测}: 通过分类头从预定义的答案词汇表中预测最可能的答案
+\end{enumerate}
+
+\subsection{技术架构}
+
+\begin{itemize}
+    \item \textbf{ViltProcessor}: 组合了图像处理器和文本分词器
+    \item \textbf{ViltForQuestionAnswering}: 在 ViLT 基础上添加了 VQA 分类头
+    \item \textbf{推理流程}: 图像 + 问题 $\rightarrow$ Processor 编码 $\rightarrow$ 模型推理 $\rightarrow$ Softmax $\rightarrow$ Top-K 答案
+\end{itemize}
+
+\section{核心代码}
+
+\subsection{VQA\_Model 类定义}
+
+\begin{lstlisting}[language=python]
+class VQA_Model:
+    def __init__(self, model_name="dandelin/vilt-b32-finetuned-vqa"):
+        # 检测计算设备 (GPU/CPU)
+        self.device = self._get_device()
+        
+        # 加载处理器: 负责图像和文本的预处理
+        self.processor = ViltProcessor.from_pretrained(model_name)
+        
+        # 加载模型: 微调后的 VQA 模型
+        self.model = ViltForQuestionAnswering.from_pretrained(model_name)
+        self.model.to(self.device)
+        self.model.eval()
+\end{lstlisting}
+
+\subsection{答案预测函数}
+
+\begin{lstlisting}[language=python]
+def predict_answer(self, image_path, question, top_k=5):
+    # 1. 加载图像
+    image = Image.open(image_path).convert('RGB')
+    
+    # 2. 处理图像和文本
+    encoding = self.processor(
+        image, question, return_tensors="pt"
+    )
+    
+    # 3. 模型推理
+    with torch.no_grad():
+        outputs = self.model(**encoding)
+    
+    # 4. 获取 Top-K 答案
+    probs = torch.nn.functional.softmax(outputs.logits, dim=-1)
+    top_k_probs, top_k_indices = torch.topk(probs[0], top_k)
+    
+    # 5. 转换为答案文本
+    results = []
+    for prob, idx in zip(top_k_probs, top_k_indices):
+        answer = self.model.config.id2label[idx.item()]
+        results.append({"answer": answer, "confidence": prob.item()})
+    
+    return results
+\end{lstlisting}
+
+\subsection{便捷调用函数}
+
+\begin{lstlisting}[language=python]
+def predict_answer(image_path, question, top_k=5, model=None):
+    #便捷函数: 使用 ViLT 模型进行视觉问答
+    #Example:
+    #results = predict_answer("data/cat.jpg", "图中有什么动物?")
+    #print(results[0])  # {'answer': 'cat', 'confidence': 0.92}
+    if model is None:
+        model = VQA_Model()
+    return model.predict_answer(image_path, question, top_k)
+\end{lstlisting}
+
+\section{结果展示}
+
+
+\begin{itemize}
+    \item Python 3.8+
+    \item PyTorch 2.0+
+    \item Transformers 4.30+
+    \item 模型: dandelin/vilt-b32-finetuned-vqa
+\end{itemize}
+
+\subsection{实验结果分析}
+
+本节基于 7 张测试图片的实际运行数据，从算法原理层面深入剖析 ViLT 模型的能力边界与局限性。测试结果已持久化保存至 \texttt{src/result.txt} 文件。
+
+\subsubsection{一、基础感知与属性提取能力（图 1-4）}
+
+在基础单目标场景中，ViLT 模型展现了卓越的跨模态特征对齐能力。以下依次展示图 1 至图 4 的测试结果：
+
+% ========== 图 1：猫 ==========
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{data/1.jpg}
+    \caption{图 1 - 基础单目标：猫}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Q}: "What kind of animal is in this picture?" \\
+          \textbf{A}: \textcolor{blue}{cat} (置信度: \textbf{99.97\%}), kitten (0.01\%)
+    \item \textbf{Q}: "What color is the animal?" \\
+          \textbf{A}: brown (35.54\%), orange (31.07\%), gray (10.58\%)
+    \item \textbf{Q}: "Is the animal cute?" \\
+          \textbf{A}: \textcolor{blue}{yes} (置信度: \textbf{99.99\%})
+\end{itemize}
+
+% ========== 图 2：狗 ==========
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{data/2.jpg}
+    \caption{图 2 - 基础单目标：狗}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Q}: "What kind of animal is in this picture?" \\
+          \textbf{A}: \textcolor{blue}{cat} (置信度: \textbf{100.00\%}) \textcolor{red}{\footnotesize}
+    \item \textbf{Q}: "What color is the dog?" \\
+          \textbf{A}: \textcolor{blue}{white} (置信度: \textbf{97.76\%}), white and brown (1.32\%)
+    \item \textbf{Q}: "Is this a pet?" \\
+          \textbf{A}: \textcolor{blue}{yes} (置信度: \textbf{100.00\%})
+\end{itemize}
+
+% ========== 图 3：坐着的狗 ==========
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{data/3.jpg}
+    \caption{图 3 - 基础单目标：坐着的狗}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Q}: "What animal is this?" \\
+          \textbf{A}: \textcolor{blue}{dog} (置信度: \textbf{94.46\%}), cat (3.80\%), puppy (0.30\%)
+    \item \textbf{Q}: "What is the dog doing?" \\
+          \textbf{A}: \textcolor{blue}{sitting} (置信度: \textbf{56.62\%}), staring (8.65\%), looking (5.11\%)
+    \item \textbf{Q}: "Is the dog sitting?" \\
+          \textbf{A}: \textcolor{blue}{yes} (置信度: \textbf{99.98\%})
+\end{itemize}
+
+% ========== 图 4：奔跑的狗 ==========
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\textwidth]{data/4.jpg}
+    \caption{图 4 - 基础单目标：奔跑的狗}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Q}: "What kind of animal is in this picture?" \\
+          \textbf{A}: \textcolor{blue}{dog} (置信度: \textbf{99.96\%}), dogs (0.01\%)
+    \item \textbf{Q}: "What is the animal doing?" \\
+          \textbf{A}: \textcolor{blue}{running} (置信度: \textbf{46.38\%}), jumping (29.06\%), playing (10.81\%)
+    \item \textbf{Q}: "What color is the dog?" \\
+          \textbf{A}: \textcolor{blue}{brown and white} (置信度: \textbf{86.45\%}), white and brown (9.93\%)
+\end{itemize}
+
+\textbf{算法原理分析}:查阅资料，图 1 中猫的识别置信度高达 \textbf{99.97\%}，图 4 中狗的识别置信度达 \textbf{99.96\%}。这种近乎完美的识别率证明 ViLT 已建立起稳固的视觉-语言映射关系。ViLT 通过将图像切分为 $16 \times 16$ 的 Patch 序列，并与文本 Token 共享同一个 Transformer 编码空间，成功实现了高效、精准的跨模态特征对齐。在单目标场景中，目标物体占据图像主要区域，其视觉特征（如毛发纹理、姿态轮廓）能够被多个 Patch 充分捕获，并通过 Self-Attention 机制与语言模型中的语义 Token（如 "cat"、"dog"、"running"）实现精准对齐。
+
+\subsubsection{二、组合逻辑与多目标推理（图 5）}
+
+% ========== 图 5：猫和狗同框 ==========
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{data/5.jpg}
+    \caption{图 5 - 多物种同框：猫和狗共存场景}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Q}: "What animals are in the picture?" \\
+          \textbf{A}: \textcolor{blue}{cat and dog} (33.55\%), dog (27.80\%), dog and cat (18.68\%)
+    \item \textbf{Q}: "How many animals are there?" \\
+          \textbf{A}: \textcolor{blue}{2} (置信度: \textbf{99.92\%}), 1 (0.03\%)
+    \item \textbf{Q}: "Are there both a cat and a dog in this picture?" \\
+          \textbf{A}: \textcolor{blue}{yes} (置信度: \textbf{99.95\%}), no (0.04\%)
+\end{itemize}
+
+\textbf{算法原理分析}: 动物计数预测为 "2" 的置信度达 \textbf{99.92\%}，共存确认 "yes" 置信度达 \textbf{99.95\%}。凭借 Transformer 的 Self-Attention 机制，模型成功建立了跨区域的语义关联，聚合了不同位置的视觉特征，从而形成了"猫和狗同时共存"的高层语义理解。当猫和狗分别位于图像的不同区域时，模型能够通过 Attention Weight 将两者的视觉特征聚合到同一个语义空间，实现组合逻辑推理。
+
+\subsubsection{三、模型的局限性：密集计数灾难（图 6-7）}
+
+% ========== 图 6：密集目标 ==========
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{data/6.jpg}
+    \caption{图 6 - 密集目标：多只金毛幼犬同框}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Q}: "What kind of animal is in this picture?" \\
+          \textbf{A}: \textcolor{blue}{dog} (73.06\%), dogs (21.76\%), golden retriever (1.06\%)
+    \item \textbf{Q}: "How many animals are there in total?" \\
+          \textbf{A}: 6 (22.80\%), 8 (22.58\%), 7 (21.44\%) \\
+          \textcolor{red}{\textbf{[严重问题] 置信度高度分散，模型彻底丧失计数确定性}}
+\end{itemize}
+
+% ========== 图 7：人宠交互 ==========
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{data/7.jpg}
+    \caption{图 7 - 人宠交互：家庭与宠物合影}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Q}: "How many people are in the picture?" (实际为 3 人) \\
+          \textbf{A}: \textcolor{blue}{2} (85.43\%), 3 (13.83\%), 4 (0.59\%) \\
+          \textcolor{red}{\textbf{[错误] 人物计数严重错误}}
+    \item \textbf{Q}: "What kind of animal is in the picture?" \\
+          \textbf{A}: \textcolor{blue}{dog} (置信度: \textbf{99.90\%}), dogs (0.04\%)
+    \item \textbf{Q}: "How many animals are there?" (实际为 1 只狗) \\
+          \textbf{A}: \textcolor{blue}{2} (86.50\%), 1 (12.12\%), 3 (1.15\%) \\
+          \textcolor{red}{\textbf{[错误] 动物计数错误}}
+\end{itemize}
+
+\textbf{查阅资料进行归因分析}: 为什么 ViLT 在计数任务上表现如此糟糕？从模型架构设计层面剖析：
+
+\begin{itemize}
+    \item \textbf{Patch-based 特征提取的先天缺陷}: ViLT 直接将图像切分成离散的 Patch 序列送入 Transformer，彻底丢失了实例级别（Instance-level）的边界信息。当多个目标高度重叠、颜色纹理相似时，Patch 特征无法有效区分"这是第 1 只狗"还是"这是第 2 只狗"。
+    
+    \item \textbf{摒弃区域提议网络（RPN）的代价}: ViLT 追求极速轻量化而摒弃了传统的区域提议网络（如 Faster R-CNN 的 RPN 模块），导致无法有效区分重叠、密集的相似目标。模型缺乏 Object Proposals，无法对每个候选区域进行独立计数。
+    
+    \item \textbf{缺乏显式的逻辑计数机制}: ViLT 的分类头直接从预定义的答案词汇表中选择答案，缺乏专门的计数推理模块。模型无法执行"遍历所有目标实例并累加计数"的逻辑操作，只能依赖特征的统计相关性进行盲猜。
+    
+    \item \textbf{语言先验偏置（Language Bias）作祟}: VQAv2 数据集中，"How many..."类问题的答案分布呈现明显的长尾偏态——小数字（如 1、2、3）的出现频率远高于大数字。这种数据偏置导致模型在不确定时极其倾向于输出训练集中的高频答案（如数字"2"）。图 7 中将 1 只狗误判为 2 只，正是这种语言偏置的典型体现。
+\end{itemize}
+
+\textbf{工程启示}: ViLT 适用于单目标识别、属性提取、简单多目标共存判断等任务。对于密集目标计数、细粒度实例分割等任务，应考虑采用更先进的架构（如 BLIP-2、LLaVA 等结合大语言模型的 VQA 系统），或引入专门的计数模块。
+
+\section{实验总结}
+
+\subsection{注意事项}
+
+\begin{enumerate}
+    \item \textbf{网络问题}: 国内直连 Hugging Face 可能失败，需配置镜像源 \texttt{HF\_ENDPOINT}， 首次运行时需要从 Hugging Face Hub 下载模型（约 500MB），请确保网络连接正常
+    \item \textbf{GPU 支持}: 建议使用 GPU 进行推理以获得更快的响应速度
+    \item \textbf{图像格式}: 支持常见图像格式（jpg, png, bmp 等），非 RGB 图像会自动转换
+    \item \textbf{问题设计}: ViLT 主要使用英文预训练，英文问题效果更好；问题应尽量清晰明确
+\end{enumerate}
+
+\subsection{实验收获}
+
+\begin{enumerate}
+    \item \textbf{多模态学习}: 理解了视觉-语言多模态模型的基本原理和实现方式
+    \item \textbf{Transformer 架构}: 学习 Transformer 在多模态任务中的应用
+    \item \textbf{Hugging Face}: 掌握使用 Hugging Face Transformers 库加载预训练模型的方法，以及通过镜像源解决网络问题的技巧
+    \item \textbf{工程实践}: 实践模块化代码设计，包括类的封装、错误处理、批量测试等
+\end{enumerate}
+
+\subsection{参考资料与链接}
+\begin{itemize}
+    \item ViLT 论文: "ViLT: Vision-and-Language Transformer Without Convolution or Region Supervision"
+    \item Hugging Face 文档: https://huggingface.co/docs/transformers/
+    \item Hugging Face 镜像: https://hf-mirror.com/
+    \item VQAv2 数据集: https://visualqa.org/
+\end{itemize}
+
+\end{document}

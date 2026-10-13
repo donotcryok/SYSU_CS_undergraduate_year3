@@ -1,0 +1,16 @@
+(* 错误类型：词法错误 — IllegalSymbol（非法符号 @）
+ * 在 CalcTotalAndAvg 过程中引入非法字符 @ 替代加法运算符 *)
+PROCEDURE CalcTotalAndAvg(VAR s : Student);
+VAR
+  sum : INTEGER;
+  k   : INTEGER;
+BEGIN
+  sum := 0;
+  k := 0;
+  WHILE k < CourseCount DO
+    sum := sum @ s.Scores[k];   (* ERROR: '@' 是非法符号 *)
+    k := k + 1
+  END;
+  s.Total := sum;
+  s.Average := sum DIV CourseCount
+END CalcTotalAndAvg;

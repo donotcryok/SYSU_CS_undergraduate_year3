@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"<Unnamed>","l":"TaxApp"},{"p":"<Unnamed>","l":"TaxCalculator"},{"p":"<Unnamed>","l":"TaxRateItem"},{"l":"所有类和接口","u":"allclasses-index.html"}];updateSearchResults();

@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<!-- 增强测试用例 for ExprEval — 覆盖 standard.xml 未充分测试的场景 -->
+<test-case-definitions>
+
+<!-- ==================== 正确用例 (Correct Cases) ==================== -->
+
+<test-case>
+	<id>C007</id>
+	<description>一元取负在表达式开头（NEG 上下文识别）。</description>
+	<input>-5 + 3 * 2</input>
+	<output>1</output>
+</test-case>
+
+<test-case>
+	<id>C008</id>
+	<description>一元取负在运算符之后（NEG 上下文识别）。</description>
+	<input>3 * -2 + 5</input>
+	<output>-1</output>
+</test-case>
+
+<test-case>
+	<id>C009</id>
+	<description>幂运算符的右结合性验证。</description>
+	<input>2 ^ 3 ^ 2</input>
+	<output>512</output>
+</test-case>
+
+<test-case>
+	<id>C010</id>
+	<description>预定义函数 abs 和 sqrt 的组合使用。</description>
+	<input>abs(-5) + sqrt(9)</input>
+	<output>8</output>
+</test-case>
+
+<test-case>
+	<id>C011</id>
+	<description>预定义函数 pow 和 tan 的组合使用。</description>
+	<input>pow(2, 3) + tan(0)</input>
+	<output>8</output>
+</test-case>
+
+<test-case>
+	<id>C012</id>
+	<description>嵌套三元条件运算符。</description>
+	<input><![CDATA[(3 > 2) ? (5 != 5 ? 1 : 2) : 3]]></input>
+	<output>2</output>
+</test-case>
+
+<test-case>
+	<id>C013</id>
+	<description>按位取反和三元组合（假分支执行）。</description>
+	<input><![CDATA[(~true) ? 50 : 60]]></input>
+	<output>60</output>
+</test-case>
+
+<test-case>
+	<id>C014</id>
+	<description>预定义函数 max 和 min 的嵌套调用。</description>
+	<input>min(max(1, 2), 3, max(4, 0))</input>
+	<output>2</output>
+</test-case>
+
+<test-case>
+	<id>C015</id>
+	<description>逻辑非和逻辑或的组合（布尔转三元）。</description>
+	<input><![CDATA[!(5 > 3) | (2 == 3) ? 100 : 200]]></input>
+	<output>200</output>
+</test-case>
+
+<test-case>
+	<id>C016</id>
+	<description>等于运算符产生布尔值用于三元条件。</description>
+	<input><![CDATA[(5 > 3) == (4 < 8) ? 1 : 2]]></input>
+	<output>1</output>
+</test-case>
+
+<!-- ==================== 错误用例 (Error Cases) ==================== -->
+
+<test-case>
+	<id>E011</id>
+	<description>三元运算符不完整（缺少冒号分支）。</description>
+	<input>1 ? 2</input>
+	<exception>TrinaryOperationException</exception>
+</test-case>
+
+<test-case>
+	<id>E012</id>
+	<description>缺少运算符——右括号后紧跟操作数。</description>
+	<input>(1 + 2)3</input>
+	<exception>MissingOperatorException</exception>
+</test-case>
+
+<test-case>
+	<id>E013</id>
+	<description>函数 pow 参数个数错误（需要 2 个，仅提供 1 个）。</description>
+	<input>pow(2)</input>
+	<exception>FunctionCallException</exception>
+</test-case>
+
+<test-case>
+	<id>E014</id>
+	<description>空括号表达式缺少操作数。</description>
+	<input>() + 1</input>
+	<exception>MissingOperandException</exception>
+</test-case>
+
+<test-case>
+	<id>E015</id>
+	<description>类型不匹配——布尔值参与算术加法。</description>
+	<input><![CDATA[true + 1]]></input>
+	<exception>TypeMismatchedException</exception>
+</test-case>
+
+<test-case>
+	<id>E016</id>
+	<description>类型不匹配——逻辑非应用于数值。</description>
+	<input>!5</input>
+	<exception>TypeMismatchedException</exception>
+</test-case>
+
+<test-case>
+	<id>E017</id>
+	<description>类型不匹配——逻辑与应用于数值。</description>
+	<input><![CDATA[1 & 2]]></input>
+	<exception>TypeMismatchedException</exception>
+</test-case>
+
+<test-case>
+	<id>E018</id>
+	<description>缺少操作数——二元运算符出现在表达式开头。</description>
+	<input>*5</input>
+	<exception>MissingOperandException</exception>
+</test-case>
+
+<test-case>
+	<id>E019</id>
+	<description>类型不匹配——关系运算链式比较导致布尔与数值比较。</description>
+	<input><![CDATA[5 > 3 > 2]]></input>
+	<exception>TypeMismatchedException</exception>
+</test-case>
+
+<test-case>
+	<id>E020</id>
+	<description>表达式为空（仅空格）。</description>
+	<input>   </input>
+	<exception>EmptyExpressionException</exception>
+</test-case>
+
+</test-case-definitions>

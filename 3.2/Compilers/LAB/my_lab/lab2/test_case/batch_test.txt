@@ -1,0 +1,135 @@
+# ===========================================================
+#     Agenda 议程管理系统 - 批处理测试用例
+# ===========================================================
+# 
+# 作者: 马福泉
+# 学号: 23336179
+# 
+# 说明: 本文件包含覆盖正常流程与各种边界/异常场景的测试用例
+# 使用方法: 在系统提示符 $ 下输入 batch test_case/batch_test.txt
+#
+
+# ==================== 第一部分：正常流程测试 ====================
+
+# 1. 用户注册测试
+# 注册两个用户，用于后续会议测试
+register alice password123
+register bob password456
+
+# 2. 添加会议测试
+# 创建一个正常的会议
+add alice password123 bob 2026-04-01 10:00:00 2026-04-01 12:00:00 项目讨论
+
+# 创建另一个会议（不同时间段）
+add alice password123 bob 2026-04-01 14:00:00 2026-04-01 16:00:00 技术评审
+
+# 3. 查询会议测试
+# 查询 alice 在某时间段内的会议
+query alice password123 2026-04-01 09:00:00 2026-04-01 17:00:00
+
+# 查询 bob 在某时间段内的会议（bob 作为被预约人）
+query bob password456 2026-04-01 09:00:00 2026-04-01 17:00:00
+
+# 4. 删除会议测试
+# 删除一个会议
+delete alice password123 技术评审
+
+# 5. 清除会议测试
+# 清除 alice 发起的所有会议
+clear alice password123
+
+# ==================== 第二部分：边界条件测试 ====================
+
+# 6. 时间边界测试
+# 创建刚好在同一时间点结束和开始的会议（不冲突）
+add alice password123 bob 2026-04-02 09:00:00 2026-04-02 10:00:00 早晨会议
+add alice password123 bob 2026-04-02 10:00:00 2026-04-02 11:00:00 接续会议
+
+# 查询验证
+query alice password123 2026-04-02 09:00:00 2026-04-02 11:00:00
+
+# 7. 查询空结果测试
+# 查询一个没有会议的时间段
+query alice password123 2026-05-01 09:00:00 2026-05-01 17:00:00
+
+# ==================== 第三部分：异常场景测试 ====================
+
+# 8. 重复注册用户测试
+# 尝试注册已存在的用户名
+register alice newpassword
+
+# 9. 错误密码测试
+# 使用错误密码尝试添加会议
+add alice wrongpassword bob 2026-04-03 10:00:00 2026-04-03 12:00:00 测试会议
+
+# 10. 用户不存在测试
+# 尝试与不存在的用户创建会议
+add alice password123 unknownuser 2026-04-03 10:00:00 2026-04-03 12:00:00 测试会议
+
+# 11. 相同用户测试
+# 尝试创建发起人和被预约人是同一个用户的会议
+add alice password123 alice 2026-04-03 10:00:00 2026-04-03 12:00:00 自我会议
+
+# 12. 时间冲突测试
+# 创建一个会议，然后尝试创建时间重叠的会议
+add alice password123 bob 2026-04-04 10:00:00 2026-04-04 12:00:00 冲突测试1
+add alice password123 bob 2026-04-04 11:00:00 2026-04-04 13:00:00 冲突测试2
+
+# 13. 被预约人时间冲突测试
+# 注册新用户 charlie
+register charlie password789
+
+# 创建 alice 和 charlie 的会议
+add alice password123 charlie 2026-04-05 10:00:00 2026-04-05 12:00:00 Alice-Charlie会议
+
+# 尝试创建 bob 和 charlie 时间冲突的会议（charlie 已有会议）
+add bob password456 charlie 2026-04-05 11:00:00 2026-04-05 13:00:00 Bob-Charlie会议
+
+# 14. 删除不存在的会议测试
+delete alice password123 不存在的会议
+
+# 15. 删除非发起人的会议测试
+# bob 尝试删除 alice 发起的会议
+delete bob password456 Alice-Charlie会议
+
+# 16. 时间格式错误测试
+add alice password123 bob 2026/04/06 10:00 2026/04/06 12:00 格式错误测试
+
+# 17. 参数不足测试
+register
+add alice password123
+query alice password123
+delete alice password123
+clear alice
+
+# 18. 未知命令测试
+unknowncommand arg1 arg2
+
+# ==================== 第四部分：综合测试 ====================
+
+# 19. 多用户多会议综合测试
+# 注册多个用户
+register david password111
+register emma password222
+
+# 创建多个会议
+add alice password123 david 2026-04-10 09:00:00 2026-04-10 10:00:00 会议A
+add bob password456 emma 2026-04-10 09:00:00 2026-04-10 10:00:00 会议B
+add alice password123 emma 2026-04-10 11:00:00 2026-04-10 12:00:00 会议C
+add david password111 bob 2026-04-10 14:00:00 2026-04-10 15:00:00 会议D
+
+# 查询各用户的会议
+query alice password123 2026-04-10 08:00:00 2026-04-10 16:00:00
+query bob password456 2026-04-10 08:00:00 2026-04-10 16:00:00
+query david password111 2026-04-10 08:00:00 2026-04-10 16:00:00
+query emma password222 2026-04-10 08:00:00 2026-04-10 16:00:00
+
+# 20. 清除测试
+clear alice password123
+clear bob password456
+clear david password111
+clear emma password222
+
+# ==================== 测试完成 ====================
+# 退出系统
+quit

@@ -1,0 +1,17 @@
+(* 错误类型：词法错误 — MismatchedComment（注释不闭合）
+ * 在 CalcTotalAndAvg 过程中注释开始但未闭合 *)
+PROCEDURE CalcTotalAndAvg(VAR s : Student);
+VAR
+  sum : INTEGER;
+  k   : INTEGER;
+BEGIN
+  sum := 0;
+  k := 0;
+  (* 这是一个未闭合的注释，缺少结束符
+  WHILE k < CourseCount DO
+    sum := sum + s.Scores[k];
+    k := k + 1
+  END;
+  s.Total := sum;
+  s.Average := sum DIV CourseCount
+END CalcTotalAndAvg;

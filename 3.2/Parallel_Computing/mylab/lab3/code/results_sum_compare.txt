@@ -1,0 +1,38 @@
+=============================================================================
+数组求和策略对比测试结果
+测试时间: 2026-04-20 17:22:29
+策略: 0=Global-Mutex, 1=Local-Reduction
+=============================================================================
+
+
+--- 数组规模: 10000000 ---
+
+策略: Global-Mutex
+Strategy: Global-Mutex, Size: 10000000, Threads: 1, Sum: 494911821, Time: 0.133815 s
+Strategy: Global-Mutex, Size: 10000000, Threads: 2, Sum: 494911821, Time: 0.425884 s
+Strategy: Global-Mutex, Size: 10000000, Threads: 4, Sum: 494911821, Time: 0.476109 s
+Strategy: Global-Mutex, Size: 10000000, Threads: 8, Sum: 494911821, Time: 0.420627 s
+Strategy: Global-Mutex, Size: 10000000, Threads: 16, Sum: 494911821, Time: 0.374386 s
+
+策略: Local-Reduction
+Strategy: Local-Reduction, Size: 10000000, Threads: 1, Sum: 494911821, Time: 0.009402 s
+Strategy: Local-Reduction, Size: 10000000, Threads: 2, Sum: 494911821, Time: 0.007807 s
+Strategy: Local-Reduction, Size: 10000000, Threads: 4, Sum: 494911821, Time: 0.006272 s
+Strategy: Local-Reduction, Size: 10000000, Threads: 8, Sum: 494911821, Time: 0.005375 s
+Strategy: Local-Reduction, Size: 10000000, Threads: 16, Sum: 494911821, Time: 0.008891 s
+
+--- 数组规模: 128000000 ---
+
+策略: Global-Mutex
+Strategy: Global-Mutex, Size: 128000000, Threads: 1, Sum: 6336234815, Time: 1.477879 s
+Strategy: Global-Mutex, Size: 128000000, Threads: 2, Sum: 6336234815, Time: 5.526133 s
+Strategy: Global-Mutex, Size: 128000000, Threads: 4, Sum: 6336234815, Time: 5.068487 s
+Strategy: Global-Mutex, Size: 128000000, Threads: 8, Sum: 6336234815, Time: 6.526830 s
+Strategy: Global-Mutex, Size: 128000000, Threads: 16, Sum: 6336234815, Time: 5.435133 s
+
+策略: Local-Reduction
+Strategy: Local-Reduction, Size: 128000000, Threads: 1, Sum: 6336234815, Time: 0.686811 s
+Strategy: Local-Reduction, Size: 128000000, Threads: 2, Sum: 6336234815, Time: 0.050974 s
+Strategy: Local-Reduction, Size: 128000000, Threads: 4, Sum: 6336234815, Time: 0.041212 s
+Strategy: Local-Reduction, Size: 128000000, Threads: 8, Sum: 6336234815, Time: 0.032641 s
+Strategy: Local-Reduction, Size: 128000000, Threads: 16, Sum: 6336234815, Time: 0.040874 s

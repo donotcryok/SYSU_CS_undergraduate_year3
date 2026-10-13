@@ -1,0 +1,16 @@
+(* 错误类型：词法错误 — IllegalInteger（数字与标识符无空格相连）
+ * 在 ReadStudent 过程中将整数字面量与标识符粘连 *)
+PROCEDURE ReadStudent(VAR s : Student);
+VAR
+  k : INTEGER;
+BEGIN
+  Read(s.Id);
+  k := 0;
+  WHILE k < CourseCount DO
+    Read(s.Scores[k]);
+    k := k + 1
+  END;
+  CalcTotalAndAvg(s);
+  (* 以下是新增的错误行：123k 将数字与标识符直接拼接 *)
+  k := 123k    (* ERROR: 数字 '123' 后面紧跟标识符 'k'，无空格分隔 *)
+END ReadStudent;

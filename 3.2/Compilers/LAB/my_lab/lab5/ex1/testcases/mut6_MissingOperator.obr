@@ -1,0 +1,16 @@
+(* 错误类型：语法错误 — MissingOperator（缺运算符）
+ * 在 CalcTotalAndAvg 过程的两操作数之间缺少 '+' 运算符 *)
+PROCEDURE CalcTotalAndAvg(VAR s : Student);
+VAR
+  sum : INTEGER;
+  k   : INTEGER;
+BEGIN
+  sum := 0;
+  k := 0;
+  WHILE k < CourseCount DO
+    sum := sum s.Scores[k];  (* ERROR: 'sum' 与 's.Scores[k]' 之间缺少 '+' 运算符 *)
+    k := k + 1
+  END;
+  s.Total := sum;
+  s.Average := sum DIV CourseCount
+END CalcTotalAndAvg;

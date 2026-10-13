@@ -1,0 +1,31 @@
+(* 错误类型：语义错误 — TypeMismatched（类型不兼容，BOOLEAN 参与算术运算）
+ * 在 PrintAll 过程中错误地将 BOOLEAN 变量 PassAll 与 INTEGER 相加 *)
+PROCEDURE PrintAll(t : StudentTable; n : INTEGER);
+VAR
+  idx  : INTEGER;
+  best : Student;
+  code : INTEGER;
+BEGIN
+  idx := 0;
+  WHILE idx < n DO
+    PrintStudent(t[idx]);
+    idx := idx + 1
+  END;
+
+  FindBestStudent(t, n, best);
+  WriteLn;
+  Write(best.Id);
+  Write(best.Total);
+  WriteLn;
+
+  CheckAllPass(t, n, PassAll);
+  (* 以下错误：将 BOOLEAN 类型的 PassAll 与 INTEGER 做加法 *)
+  code := PassAll + 1;   (* ERROR: BOOLEAN 不能参与 '+' 算术运算，类型不匹配 *)
+
+  IF PassAll THEN
+    Write(1)
+  ELSE
+    Write(0)
+  END;
+  WriteLn
+END PrintAll;

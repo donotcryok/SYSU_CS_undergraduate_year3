@@ -1,0 +1,200 @@
+(* ============================================================
+ * 文件名: StudentStats.obr
+ * 描述:   Oberon-0 学生成绩统计程序
+ * 覆盖:   MODULE, CONST, TYPE(RECORD), VAR(ARRAY),
+ *         PROCEDURE(值参数/VAR参数/嵌套调用),
+ *         IF/ELSIF/ELSE, WHILE, Read/Write/WriteLn
+ * ============================================================ *)
+MODULE StudentStats;
+
+(* --- 常量定义：班级最大人数与课程数 --- *)
+CONST
+  MaxStudents = 50;
+  CourseCount = 4;
+
+(* --- 类型定义：学生记录（复合类型 RECORD） --- *)
+TYPE
+  (* 学生记录：包含学号、四门课成绩数组、总分与平均分 *)
+  Student = RECORD
+    Id      : INTEGER;
+    Scores  : ARRAY CourseCount OF INTEGER;  (* 成绩数组，嵌套在 RECORD 中 *)
+    Total   : INTEGER;
+    Average : INTEGER
+  END;
+
+  (* 学生表：由多个学生记录组成的数组 *)
+  StudentTable = ARRAY MaxStudents OF Student;
+
+(* --- 变量声明 --- *)
+VAR
+  Table   : StudentTable;   (* 学生表 *)
+  Count   : INTEGER;        (* 实际学生数 *)
+  i, j    : INTEGER;        (* 循环计数器 *)
+  PassAll : BOOLEAN;        (* 是否全班及格 *)
+
+(* ----------------------------------------------------------
+ * 过程1: CalcTotalAndAvg —— 计算单个学生的总分与平均分
+ * 参数:  s — VAR 引用参数，直接修改学生记录内的字段
+ * ---------------------------------------------------------- *)
+PROCEDURE CalcTotalAndAvg(VAR s : Student);
+VAR
+  sum : INTEGER;
+  k   : INTEGER;
+BEGIN
+  sum := 0;
+  k := 0;
+  WHILE k < CourseCount DO
+    sum := sum + s.Scores[k];   (* 数组下标访问 *)
+    k := k + 1
+  END;
+  s.Total := sum;
+  s.Average := sum DIV CourseCount
+END CalcTotalAndAvg;
+
+(* ----------------------------------------------------------
+ * 过程2: ReadStudent —— 从输入读取一个学生的信息
+ * 参数:  s — VAR 引用参数，填充学生记录
+ * ---------------------------------------------------------- *)
+PROCEDURE ReadStudent(VAR s : Student);
+VAR
+  k : INTEGER;
+BEGIN
+  Read(s.Id);
+  k := 0;
+  WHILE k < CourseCount DO
+    Read(s.Scores[k]);
+    k := k + 1
+  END;
+  CalcTotalAndAvg(s)   (* 嵌套过程调用 *)
+END ReadStudent;
+
+(* ----------------------------------------------------------
+ * 过程3: FindBestStudent —— 查找总分最高的学生
+ * 参数:  t    — 值参数，只读学生表
+ *        n    — 值参数，学生总数
+ *        best — VAR 引用参数，返回最高分学生记录
+ * ---------------------------------------------------------- *)
+PROCEDURE FindBestStudent(t    : StudentTable;
+                          n    : INTEGER;
+                          VAR best : Student);
+VAR
+  idx     : INTEGER;
+  maxTot  : INTEGER;
+BEGIN
+  (* 假设第一个学生最高 *)
+  best := t[0];
+  maxTot := t[0].Total;
+  idx := 1;
+
+  WHILE idx < n DO
+    IF t[idx].Total > maxTot THEN
+      best := t[idx];
+      maxTot := t[idx].Total
+    END;
+    idx := idx + 1
+  END
+END FindBestStudent;
+
+(* ----------------------------------------------------------
+ * 过程4: CheckAllPass —— 检查全班是否所有学生都及格
+ *        及格定义为平均分 >= 60
+ * 参数:  t      — 值参数，只读学生表
+ *        n      — 值参数，学生总数
+ *        result — VAR 引用参数，输出 BOOLEAN 检查结果
+ * ---------------------------------------------------------- *)
+PROCEDURE CheckAllPass(t       : StudentTable;
+                       n       : INTEGER;
+                       VAR result : BOOLEAN);
+VAR
+  idx : INTEGER;
+  ok  : BOOLEAN;
+BEGIN
+  ok := TRUE;
+  idx := 0;
+
+  WHILE (idx < n) & ok DO
+    (* IF/ELSIF/ELSE 控制流 *)
+    IF t[idx].Average >= 90 THEN
+      (* 优秀，不做额外处理 *)
+    ELSIF t[idx].Average >= 60 THEN
+      (* 及格，继续检查 *)
+    ELSE
+      ok := FALSE   (* 有不及格学生 *)
+    END;
+    idx := idx + 1
+  END;
+
+  result := ok
+END CheckAllPass;
+
+(* ----------------------------------------------------------
+ * 过程5: PrintStudent —— 输出单个学生信息
+ * ---------------------------------------------------------- *)
+PROCEDURE PrintStudent(s : Student);
+VAR
+  k : INTEGER;
+BEGIN
+  Write(s.Id);
+  k := 0;
+  WHILE k < CourseCount DO
+    Write(s.Scores[k]);
+    k := k + 1
+  END;
+  Write(s.Total);
+  Write(s.Average);
+  WriteLn
+END PrintStudent;
+
+(* ----------------------------------------------------------
+ * 过程6: PrintAll —— 输出全部学生信息并给出统计
+ * ---------------------------------------------------------- *)
+PROCEDURE PrintAll(t : StudentTable; n : INTEGER);
+VAR
+  idx  : INTEGER;
+  best : Student;
+BEGIN
+  idx := 0;
+  WHILE idx < n DO
+    PrintStudent(t[idx]);    (* 嵌套过程调用 *)
+    idx := idx + 1
+  END;
+
+  (* 调用 FindBestStudent 输出最高分 *)
+  FindBestStudent(t, n, best);
+  WriteLn;
+  Write(best.Id);
+  Write(best.Total);
+  WriteLn;
+
+  (* 调用 CheckAllPass 检查全班及格情况 *)
+  CheckAllPass(t, n, PassAll);
+  IF PassAll THEN
+    Write(1)    (* 1 表示全部及格 *)
+  ELSE
+    Write(0)    (* 0 表示存在不及格 *)
+  END;
+  WriteLn
+END PrintAll;
+
+(* ==========================================================
+ * 主程序体
+ * ========================================================== *)
+BEGIN
+  (* 读取学生人数 *)
+  Read(Count);
+
+  (* 确保人数在合法范围内 *)
+  IF Count > MaxStudents THEN
+    Count := MaxStudents
+  END;
+
+  (* 逐个读取学生信息 *)
+  i := 0;
+  WHILE i < Count DO
+    ReadStudent(Table[i]);
+    i := i + 1
+  END;
+
+  (* 输出统计结果 *)
+  PrintAll(Table, Count)
+END StudentStats.

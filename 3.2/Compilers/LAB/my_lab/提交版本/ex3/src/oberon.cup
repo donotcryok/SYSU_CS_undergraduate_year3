@@ -1,0 +1,487 @@
+/* ===========================================================
+ * oberon.cup —— Oberon-0 语法分析器 (JavaCUP 输入文件)
+ * 目标语言: Oberon-0 (Wirth 1996, 不含 IMPORT)
+ * 生成: Parser.java (LALR 语法分析器) + sym.java (符号常量)
+ * 集成: CallGraph 调用图生成
+ * =========================================================== */
+
+import java.io.*;
+import java_cup.runtime.*;
+import callgraph.*;
+import exceptions.*;
+
+/* ----- 用户代码 ----- */
+parser code {:
+    /* --- CallGraph 实例 (由测试驱动通过构造函数注入) --- */
+    private CallGraph graph;
+
+    /* 过程名 → CallGraph key 的本地映射 (CallGraph 无公开查找 API) */
+    private java.util.HashMap<String,String> procNameToKey;
+
+    /* 当前过程名称 (用于调用图边的 source) */
+    private String currentProcName = null;
+    private int procCounter   = 0;
+    private int callSiteCounter = 0;
+
+    private String newProcKey() {
+        procCounter++;
+        return "p" + procCounter;
+    }
+    private String newCallSiteKey() {
+        callSiteCounter++;
+        return "c" + callSiteCounter;
+    }
+
+    public Parser(CallGraph graph, Scanner scanner) {
+        super(scanner);
+        this.graph = graph;
+        this.procNameToKey = new java.util.HashMap<>();
+    }
+
+    public CallGraph getGraph() { return graph; }
+
+    /* 通过过程名查找 CallGraph key (O(1) 本地映射) */
+    private String findProcKey(String procName) {
+        return procNameToKey.get(procName.toLowerCase());
+    }
+
+    /* 错误报告 */
+    public void report_error(String msg, Object info) {
+        Symbol s = (Symbol) info;
+        System.err.println("[语法错误] 行 " + (s.left + 1) + ", 列 " + (s.right + 1)
+            + ": " + msg);
+    }
+    public void report_fatal_error(String msg, Object info) throws Exception {
+        report_error(msg, info);
+        throw new Exception("语法分析终止: " + msg);
+    }
+:};
+
+/* ----- 终结符声明 (与 Token.java 常量对应) ----- */
+
+/* 保留字 (大小写无关, 16 个) */
+terminal            MODULE, BEGIN, END, IF, THEN, ELSIF, ELSE, WHILE, DO;
+terminal            PROCEDURE, VAR, CONST, TYPE, RECORD, ARRAY, OF;
+
+/* 预定义关键字 */
+terminal            INTEGER_TYPE, BOOLEAN_TYPE, READ, WRITE, WRITELN;
+
+/* 字面量 */
+terminal Integer    INTEGER;
+terminal Boolean    BOOL_LIT;
+terminal String     IDENT;
+
+/* 运算符 */
+terminal            PLUS, MINUS, STAR, DIV, MOD, AND, OR, NOT;
+terminal            EQ, NEQ, LT, LE, GT, GE;
+
+/* 分界符 */
+terminal            ASSIGN, COLON, SEMI, DOT, COMMA;
+terminal            LPAREN, RPAREN, LBRACK, RBRACK;
+
+/* ----- 非终结符声明 (JavaCUP 要求显式声明) ----- */
+non terminal        module;
+non terminal        decl_seq, const_decl_list, type_decl_list, var_decl_list;
+non terminal        proc_decl, proc_tail;
+non terminal        formal_params, fp_section_list, fp_section;
+non terminal        statement_seq, statement, assignment, proc_call;
+non terminal        if_stmt, elsif_parts, while_stmt;
+non terminal Object expr, const_expr;
+non terminal Object simple_expr, term, factor, designator;
+non terminal String type, ident_list, relation;
+non terminal String selector_part_list, selector_part, expr_list;
+non terminal        const_decl, type_decl, field_list, field_decl, var_decl;
+
+/* ----- 优先级与结合性 (由低到高) ----- */
+precedence left     OR;
+precedence left     AND;
+precedence left     NOT;
+precedence left     EQ, NEQ, LT, LE, GT, GE;
+precedence left     PLUS, MINUS;
+precedence left     STAR, DIV, MOD;
+precedence left     DOT, LBRACK;        /* 选择器 */
+
+/* ----- 文法起始符号 ----- */
+start with module;
+
+/* =============================================================
+ * 文法规则
+ * ============================================================= */
+
+module ::=
+    MODULE IDENT:id SEMI
+    decl_seq
+    BEGIN
+    statement_seq
+    END IDENT:id_end DOT
+    {:
+        System.out.println("[语法分析] 模块 '" + id + "' 分析完成。");
+        System.out.println("[调用图] 过程数: " + graph.countProcedures()
+            + ", 调用点数: " + graph.countCallSites()
+            + ", 边数: " + graph.countEdges());
+    :}
+    ;
+
+/* === 声明序列 (Oberon-0 无 IMPORT) === */
+decl_seq ::=
+    /* empty */
+    | CONST const_decl_list decl_seq
+    | TYPE  type_decl_list  decl_seq
+    | VAR   var_decl_list   decl_seq
+    | proc_decl SEMI decl_seq
+    ;
+
+/* === 常量声明 === */
+const_decl_list ::=
+    /* empty */
+    | const_decl const_decl_list
+    ;
+
+const_decl ::=
+    IDENT:id EQ const_expr:e SEMI
+    {:
+        /* CONST id = e */
+    :}
+    ;
+
+const_expr ::=
+    expr:e
+    {: RESULT = e; :}
+    ;
+
+/* === 类型声明 === */
+type_decl_list ::=
+    /* empty */
+    | type_decl type_decl_list
+    ;
+
+type_decl ::=
+    IDENT:id EQ type:t SEMI
+    {:
+        /* TYPE id = t */
+    :}
+    ;
+
+type ::=
+    IDENT:id
+    {:
+        RESULT = id;
+    :}
+    | INTEGER_TYPE
+    {:
+        RESULT = "INTEGER";
+    :}
+    | BOOLEAN_TYPE
+    {:
+        RESULT = "BOOLEAN";
+    :}
+    | ARRAY const_expr:len OF type:elem
+    {:
+        RESULT = "ARRAY " + len + " OF " + elem;
+    :}
+    | RECORD field_list END
+    {:
+        RESULT = "RECORD";
+    :}
+    ;
+
+field_list ::=
+    /* empty */
+    | field_decl
+    | field_decl SEMI field_list
+    ;
+
+field_decl ::=
+    ident_list:names COLON type:t
+    {:
+        /* field names : t */
+    :}
+    ;
+
+/* === 变量声明 === */
+var_decl_list ::=
+    /* empty */
+    | var_decl var_decl_list
+    ;
+
+var_decl ::=
+    ident_list:names COLON type:t SEMI
+    {:
+        /* VAR names : t */
+    :}
+    ;
+
+ident_list ::=
+    IDENT:id
+    {:
+        RESULT = id;
+    :}
+    | IDENT:id COMMA ident_list:rest
+    {:
+        RESULT = id + ", " + rest;
+    :}
+    ;
+
+/* === 过程声明 === */
+proc_decl ::=
+    PROCEDURE IDENT:name
+    {:
+        /* 注册 CallGraph 过程节点 */
+        String procKey = newProcKey();
+        graph.addProcedure(procKey, name);
+        procNameToKey.put(name.toLowerCase(), procKey);
+        currentProcName = name;
+        /* System.out.println("  过程: " + name + " (key=" + procKey + ")"); */
+    :}
+    proc_tail
+    {:
+        currentProcName = null;
+    :}
+    ;
+
+proc_tail ::=
+    formal_params SEMI decl_seq BEGIN statement_seq END IDENT:name
+    | SEMI decl_seq BEGIN statement_seq END IDENT:name
+    ;
+
+formal_params ::=
+    LPAREN fp_section_list RPAREN
+    ;
+
+fp_section_list ::=
+    fp_section
+    | fp_section SEMI fp_section_list
+    ;
+
+fp_section ::=
+    VAR ident_list COLON type
+    | ident_list COLON type
+    ;
+
+/* === 语句序列 === */
+statement_seq ::=
+    /* empty */
+    | statement
+    | statement SEMI statement_seq
+    ;
+
+/* === 语句 === */
+statement ::=
+    assignment
+    | proc_call
+    | if_stmt
+    | while_stmt
+    | READ LPAREN expr:e RPAREN
+    {:
+        /* Read(x) —— 内建过程 */
+    :}
+    | WRITE LPAREN expr:e RPAREN
+    {:
+        /* Write(x) —— 内建过程 */
+    :}
+    | WRITELN
+    {:
+        /* WriteLn —— 内建过程 */
+    :}
+    ;
+
+/* === 赋值语句 === */
+assignment ::=
+    IDENT:id selector_part_list:s ASSIGN expr:e
+    {:
+        /* id.s := e */
+    :}
+    ;
+
+/* === 过程调用 === */
+proc_call ::=
+    IDENT:id LPAREN expr_list:args RPAREN
+    {:
+        /* 有参过程调用 */
+        String callee = id;
+        String caller = (currentProcName != null) ? currentProcName : "main";
+        String callKey = newCallSiteKey();
+        graph.addCallSite(callKey, caller, callee + "(" + args + ")");
+        String targetKey = findProcKey(callee);
+        if (targetKey != null) {
+            graph.addEdge(callKey, targetKey);
+        }
+    :}
+    | IDENT:id
+    {:
+        /* 无参过程调用 */
+        String callee = id;
+        String caller = (currentProcName != null) ? currentProcName : "main";
+        String callKey = newCallSiteKey();
+        graph.addCallSite(callKey, caller, callee);
+        String targetKey = findProcKey(callee);
+        if (targetKey != null) {
+            graph.addEdge(callKey, targetKey);
+        }
+    :}
+    ;
+
+/* === IF 语句 === */
+if_stmt ::=
+    IF expr:e THEN statement_seq:s1 elsif_parts END
+    {:
+        /* IF e THEN ... END */
+    :}
+    | IF expr:e THEN statement_seq:s1 elsif_parts ELSE statement_seq:s2 END
+    {:
+        /* IF e THEN ... ELSE ... END */
+    :}
+    ;
+
+elsif_parts ::=
+    /* empty */
+    | ELSIF expr:e THEN statement_seq:s elsif_parts
+    ;
+
+/* === WHILE 语句 === */
+while_stmt ::=
+    WHILE expr:e DO statement_seq:s END
+    {:
+        /* WHILE e DO ... END */
+    :}
+    ;
+
+/* === 表达式 === */
+expr ::=
+    simple_expr:e
+    {:
+        RESULT = e;
+    :}
+    | simple_expr:l relation:op simple_expr:r
+    {:
+        RESULT = l + " " + op + " " + r;
+    :}
+    ;
+
+relation ::=
+    EQ    {: RESULT = "=";  :}
+    | NEQ {: RESULT = "#";  :}
+    | LT  {: RESULT = "<";  :}
+    | LE  {: RESULT = "<="; :}
+    | GT  {: RESULT = ">";  :}
+    | GE  {: RESULT = ">="; :}
+    ;
+
+simple_expr ::=
+    term:t
+    {:
+        RESULT = t;
+    :}
+    | PLUS term:t
+    {:
+        RESULT = "+" + t;
+    :}
+    | MINUS term:t
+    {:
+        RESULT = "-" + t;
+    :}
+    | simple_expr:l PLUS term:r
+    {:
+        RESULT = l + " + " + r;
+    :}
+    | simple_expr:l MINUS term:r
+    {:
+        RESULT = l + " - " + r;
+    :}
+    | simple_expr:l OR term:r
+    {:
+        RESULT = l + " OR " + r;
+    :}
+    ;
+
+term ::=
+    factor:f
+    {:
+        RESULT = f;
+    :}
+    | term:l STAR factor:r
+    {:
+        RESULT = l + " * " + r;
+    :}
+    | term:l DIV factor:r
+    {:
+        RESULT = l + " DIV " + r;
+    :}
+    | term:l MOD factor:r
+    {:
+        RESULT = l + " MOD " + r;
+    :}
+    | term:l AND factor:r
+    {:
+        RESULT = l + " & " + r;
+    :}
+    ;
+
+factor ::=
+    designator:d
+    {:
+        RESULT = d;
+    :}
+    | INTEGER:n
+    {:
+        RESULT = n.toString();
+    :}
+    | BOOL_LIT:b
+    {:
+        RESULT = b.toString();
+    :}
+    | LPAREN expr:e RPAREN
+    {:
+        RESULT = "(" + e + ")";
+    :}
+    | NOT factor:f
+    {:
+        RESULT = "~" + f;
+    :}
+    ;
+
+/* === 标识符 + 选择器 (设计子) === */
+designator ::=
+    IDENT:id selector_part_list:s
+    {:
+        RESULT = id + s;
+    :}
+    ;
+
+selector_part_list ::=
+    /* empty */
+    {:
+        RESULT = "";
+    :}
+    | selector_part_list:s selector_part:p
+    {:
+        RESULT = s + p;
+    :}
+    ;
+
+selector_part ::=
+    DOT IDENT:id
+    {:
+        RESULT = "." + id;
+    :}
+    | LBRACK expr:e RBRACK
+    {:
+        RESULT = "[" + e + "]";
+    :}
+    ;
+
+/* === 表达式列表 === */
+expr_list ::=
+    /* empty */
+    {:
+        RESULT = "";
+    :}
+    | expr:e
+    {:
+        RESULT = e.toString();
+    :}
+    | expr:e COMMA expr_list:rest
+    {:
+        RESULT = e + ", " + rest;
+    :}
+    ;

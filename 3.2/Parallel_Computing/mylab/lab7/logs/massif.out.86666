@@ -1,0 +1,1520 @@
+desc: --stacks=yes --massif-out-file=massif.out.%p
+cmd: ../src/fft_mpi_opt 16 10
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=8045746
+mem_heap_B=357699
+mem_heap_extra_B=30453
+mem_stacks_B=3544
+heap_tree=detailed
+n11: 357699 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 158528 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 17312 0x4FB20ED: mca_base_var_group_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 17312 0x4FA6DF4: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 17312 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 17312 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 17312 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 17312 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 8672 0x4FA4B1D: mca_base_component_repository_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 8672 0x4FA6A21: mca_base_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 8672 0x4F86044: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 8672 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 8672 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 8672 0x11172B: main (fft_mpi_opt.cpp:269)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n3: 25245 0x4DF637E: strdup (strdup.c:42)
+  n2: 11882 0x4FAFA8F: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 9826 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 9826 in 60 places, all below massif's threshold (1.00%)
+   n0: 2056 in 1 place, below massif's threshold (1.00%)
+  n1: 7562 0x4FA46CB: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 7562 0x4FCD2AA: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 7562 0x4FA49EF: mca_base_component_repository_add (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 7562 0x4FA4B32: mca_base_component_repository_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+      n1: 7562 0x4FA6A21: mca_base_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+       n1: 7562 0x4F86044: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+        n1: 7562 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n1: 7562 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n0: 7562 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 5801 in 25 places, all below massif's threshold (1.00%)
+ n0: 25118 in 59 places, all below massif's threshold (1.00%)
+ n2: 22344 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 19824 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n0: 14112 in 61 places, all below massif's threshold (1.00%)
+   n1: 5712 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 5712 in 7 places, all below massif's threshold (1.00%)
+  n0: 2520 in 1 place, below massif's threshold (1.00%)
+ n1: 21120 0x4FA4669: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 21120 0x4FCD2AA: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 21120 0x4FA49EF: mca_base_component_repository_add (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 21120 0x4FA4B32: mca_base_component_repository_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 21120 0x4FA6A21: mca_base_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+      n1: 21120 0x4F86044: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+       n1: 21120 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 21120 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 21120 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 11760 0x4FAF2FF: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 7840 0x4FAF9C1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 7840 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 7840 in 9 places, all below massif's threshold (1.00%)
+  n0: 3920 in 3 places, all below massif's threshold (1.00%)
+ n1: 7236 0x4F9FB5B: mca_base_var_generate_full_name4 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n0: 7236 in 6 places, all below massif's threshold (1.00%)
+ n1: 4608 0x4004EDC: malloc (rtld-malloc.h:56)
+  n1: 4608 0x4004EDC: _dlfo_mappings_segment_allocate (dl-find_object.c:217)
+   n1: 4608 0x4004EDC: _dl_find_object_update_1 (dl-find_object.c:671)
+    n1: 4608 0x4004EDC: _dl_find_object_update (dl-find_object.c:805)
+     n1: 4608 0x400DC37: dl_open_worker_begin (dl-open.c:756)
+      n1: 4608 0x400151B: _dl_catch_exception (dl-catch.c:237)
+       n1: 4608 0x400CD1F: dl_open_worker (dl-open.c:803)
+        n1: 4608 0x400151B: _dl_catch_exception (dl-catch.c:237)
+         n1: 4608 0x400D163: _dl_open (dl-open.c:905)
+          n1: 4608 0x4DDA1A3: dlopen_doit (dlopen.c:56)
+           n1: 4608 0x400151B: _dl_catch_exception (dl-catch.c:237)
+            n1: 4608 0x4001668: _dl_catch_error (dl-catch.c:256)
+             n1: 4608 0x4DD9C82: _dlerror_run (dlerror.c:138)
+              n1: 4608 0x4DDA25E: dlopen_implementation (dlopen.c:71)
+               n1: 4608 0x4DDA25E: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                n1: 4608 0x4FC53B1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                 n1: 4608 0x4FA5751: mca_base_component_repository_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                  n1: 4608 0x4FA5FE4: mca_base_component_find (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                   n1: 4608 0x4FB21A1: mca_base_framework_components_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                    n1: 4608 0x4FB26AA: mca_base_framework_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                     n1: 4608 0x4FB271D: mca_base_framework_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                      n1: 4608 0x4F873EB: opal_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                       n1: 4608 0x509FF7B: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+                        n1: 4608 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+                         n1: 4608 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+                          n0: 4608 0x11172B: main (fft_mpi_opt.cpp:269)
+ n1: 4096 0x4FA760D: mca_base_var_cache_files (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 4096 0x4F85F99: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 4096 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+    n1: 4096 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n0: 4096 0x11172B: main (fft_mpi_opt.cpp:269)
+ n1: 3916 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 3916 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 3916 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n1: 3916 0x4009528: _dl_map_object (dl-load.c:2268)
+     n1: 3916 0x400D8DB: dl_open_worker_begin (dl-open.c:578)
+      n1: 3916 0x400151B: _dl_catch_exception (dl-catch.c:237)
+       n1: 3916 0x400CD1F: dl_open_worker (dl-open.c:803)
+        n1: 3916 0x400151B: _dl_catch_exception (dl-catch.c:237)
+         n1: 3916 0x400D163: _dl_open (dl-open.c:905)
+          n1: 3916 0x4DDA1A3: dlopen_doit (dlopen.c:56)
+           n1: 3916 0x400151B: _dl_catch_exception (dl-catch.c:237)
+            n1: 3916 0x4001668: _dl_catch_error (dl-catch.c:256)
+             n1: 3916 0x4DD9C82: _dlerror_run (dlerror.c:138)
+              n1: 3916 0x4DDA25E: dlopen_implementation (dlopen.c:71)
+               n1: 3916 0x4DDA25E: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                n1: 3916 0x4FC53B1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                 n1: 3916 0x4FA5751: mca_base_component_repository_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                  n1: 3916 0x4FA5FE4: mca_base_component_find (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                   n1: 3916 0x4FB21A1: mca_base_framework_components_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                    n1: 3916 0x4FB26AA: mca_base_framework_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                     n1: 3916 0x4FB271D: mca_base_framework_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                      n1: 3916 0x4F873EB: opal_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                       n1: 3916 0x509FF7B: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+                        n1: 3916 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+                         n1: 3916 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+                          n0: 3916 0x11172B: main (fft_mpi_opt.cpp:269)
+#-----------
+snapshot=2
+#-----------
+time=14370335
+mem_heap_B=799386
+mem_heap_extra_B=80118
+mem_stacks_B=8776
+heap_tree=detailed
+n14: 799386 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n4: 158528 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 17312 0x4FB20ED: mca_base_var_group_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 17312 0x4FA6DF4: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 17312 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 17312 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 17312 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 17312 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 8672 in 1 place, below massif's threshold (1.00%)
+ n0: 144459 in 407 places, all below massif's threshold (1.00%)
+ n3: 115320 0x5F17464: ???
+  n1: 82840 0x5F1C665: ???
+   n1: 82840 0x5EEA608: ???
+    n1: 82840 0x5EEAC26: ???
+     n1: 82840 0x5E8C4DC: ???
+      n1: 82840 0x5E1EA92: ???
+       n1: 82840 0x5608A63: ???
+        n1: 82840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 82840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 82840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 82840 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 21640 0x5F175DD: ???
+   n1: 21640 0x5F1C694: ???
+    n1: 21640 0x5EEA608: ???
+     n1: 21640 0x5EEAC26: ???
+      n1: 21640 0x5E8C4DC: ???
+       n1: 21640 0x5E1EA92: ???
+        n1: 21640 0x5608A63: ???
+         n1: 21640 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+          n1: 21640 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n1: 21640 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+            n0: 21640 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 10840 0x5F1343D: ???
+   n1: 10840 0x5F1D733: ???
+    n1: 10840 0x5EEA629: ???
+     n1: 10840 0x5EEAC26: ???
+      n1: 10840 0x5E8C4DC: ???
+       n1: 10840 0x5E1EA92: ???
+        n1: 10840 0x5608A63: ???
+         n1: 10840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+          n1: 10840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n1: 10840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+            n0: 10840 0x11172B: main (fft_mpi_opt.cpp:269)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n1: 69632 0x5F1E29D: ???
+  n1: 69632 0x5EEAF50: ???
+   n1: 69632 0x5E8C4DC: ???
+    n1: 69632 0x5E1EA92: ???
+     n1: 69632 0x5608A63: ???
+      n1: 69632 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 69632 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 69632 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 69632 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 52356 0x4DF637E: strdup (strdup.c:42)
+  n0: 32041 in 364 places, all below massif's threshold (1.00%)
+  n2: 20315 0x4FAFA8F: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 17784 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 17784 in 155 places, all below massif's threshold (1.00%)
+   n0: 2531 in 1 place, below massif's threshold (1.00%)
+ n2: 47544 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 43848 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n0: 31416 in 156 places, all below massif's threshold (1.00%)
+   n1: 12432 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 12432 in 14 places, all below massif's threshold (1.00%)
+  n0: 3696 in 1 place, below massif's threshold (1.00%)
+ n2: 38400 0x5F1CACD: ???
+  n1: 32256 0x5F1D097: ???
+   n0: 32256 in 67 places, all below massif's threshold (1.00%)
+  n0: 6144 in 1 place, below massif's threshold (1.00%)
+ n1: 21120 0x4FA4669: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 21120 0x4FCD2AA: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 21120 0x4FA49EF: mca_base_component_repository_add (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 21120 0x4FA4B32: mca_base_component_repository_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 21120 0x4FA6A21: mca_base_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+      n1: 21120 0x4F86044: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+       n1: 21120 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 21120 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 21120 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 20720 0x4FAF2FF: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 14560 0x4FAF9C1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 13720 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 13720 in 15 places, all below massif's threshold (1.00%)
+   n0: 840 in 1 place, below massif's threshold (1.00%)
+  n0: 6160 in 3 places, all below massif's threshold (1.00%)
+ n1: 16824 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 16824 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 16824 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n2: 16824 0x4009528: _dl_map_object (dl-load.c:2268)
+     n1: 13062 0x400D8DB: dl_open_worker_begin (dl-open.c:578)
+      n1: 13062 0x400151B: _dl_catch_exception (dl-catch.c:237)
+       n1: 13062 0x400CD1F: dl_open_worker (dl-open.c:803)
+        n1: 13062 0x400151B: _dl_catch_exception (dl-catch.c:237)
+         n1: 13062 0x400D163: _dl_open (dl-open.c:905)
+          n1: 13062 0x4DDA1A3: dlopen_doit (dlopen.c:56)
+           n1: 13062 0x400151B: _dl_catch_exception (dl-catch.c:237)
+            n1: 13062 0x4001668: _dl_catch_error (dl-catch.c:256)
+             n1: 13062 0x4DD9C82: _dlerror_run (dlerror.c:138)
+              n1: 13062 0x4DDA25E: dlopen_implementation (dlopen.c:71)
+               n2: 13062 0x4DDA25E: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                n1: 11754 0x4FC53B1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                 n1: 11754 0x4FA5751: mca_base_component_repository_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                  n1: 11754 0x4FA5FE4: mca_base_component_find (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                   n1: 11754 0x4FB21A1: mca_base_framework_components_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                    n1: 11754 0x4FB26AA: mca_base_framework_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                     n1: 11754 0x4FB271D: mca_base_framework_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                      n0: 11754 in 5 places, all below massif's threshold (1.00%)
+                n0: 1308 in 1 place, below massif's threshold (1.00%)
+     n0: 3762 in 1 place, below massif's threshold (1.00%)
+ n1: 15107 0x4F9FB5B: mca_base_var_generate_full_name4 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n0: 15107 in 6 places, all below massif's threshold (1.00%)
+ n2: 14384 0x5F18D9F: ???
+  n2: 9424 0x5F1CAB1: ???
+   n1: 8928 0x5F1D097: ???
+    n0: 8928 in 10 places, all below massif's threshold (1.00%)
+   n0: 496 in 1 place, below massif's threshold (1.00%)
+  n0: 4960 in 2 places, all below massif's threshold (1.00%)
+ n1: 11264 0x5F16E74: ???
+  n0: 11264 in 9 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=3
+#-----------
+time=19153106
+mem_heap_B=1115469
+mem_heap_extra_B=148051
+mem_stacks_B=11960
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=26933452
+mem_heap_B=1117427
+mem_heap_extra_B=148037
+mem_stacks_B=9872
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=36421907
+mem_heap_B=1117793
+mem_heap_extra_B=148143
+mem_stacks_B=9880
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=44147671
+mem_heap_B=1359915
+mem_heap_extra_B=177173
+mem_stacks_B=4096
+heap_tree=detailed
+n17: 1359915 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n0: 291353 in 671 places, all below massif's threshold (1.00%)
+ n6: 245160 0x5F17464: ???
+  n1: 82840 0x5F1C665: ???
+   n1: 82840 0x5EEA608: ???
+    n1: 82840 0x5EEAC26: ???
+     n1: 82840 0x5E8C4DC: ???
+      n1: 82840 0x5E1EA92: ???
+       n1: 82840 0x5608A63: ???
+        n1: 82840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 82840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 82840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 82840 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 43280 0x5F80835: ???
+   n1: 43280 0x5F8DF18: ???
+    n2: 43280 0x5F8A24F: ???
+     n1: 21640 0x5EB3BD0: ???
+      n1: 21640 0x51462A7: ??? (in /usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.7.0.1)
+       n1: 21640 0x5147FAE: event_base_loop (in /usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.7.0.1)
+        n1: 21640 0x5EE3EB0: ???
+         n1: 21640 0x4DDEAA3: start_thread (pthread_create.c:447)
+          n0: 21640 0x4E6BA63: clone (clone.S:100)
+     n1: 21640 0x5FC1FE1: ???
+      n1: 21640 0x5FCD24A: ???
+       n1: 21640 0x5E8D44C: ???
+        n1: 21640 0x5E1EA92: ???
+         n1: 21640 0x5608A63: ???
+          n1: 21640 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+           n1: 21640 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+            n1: 21640 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+             n0: 21640 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 43280 0x5F808BD: ???
+   n1: 43280 0x5F8DF18: ???
+    n2: 43280 0x5F8A24F: ???
+     n1: 21640 0x5EB3BD0: ???
+      n1: 21640 0x51462A7: ??? (in /usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.7.0.1)
+       n1: 21640 0x5147FAE: event_base_loop (in /usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.7.0.1)
+        n1: 21640 0x5EE3EB0: ???
+         n1: 21640 0x4DDEAA3: start_thread (pthread_create.c:447)
+          n0: 21640 0x4E6BA63: clone (clone.S:100)
+     n1: 21640 0x5FC1FE1: ???
+      n1: 21640 0x5FCD24A: ???
+       n1: 21640 0x5E8D44C: ???
+        n1: 21640 0x5E1EA92: ???
+         n1: 21640 0x5608A63: ???
+          n1: 21640 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+           n1: 21640 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+            n1: 21640 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+             n0: 21640 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 43280 0x5F8094D: ???
+   n1: 43280 0x5F8DF18: ???
+    n2: 43280 0x5F8A24F: ???
+     n1: 21640 0x5EB3BD0: ???
+      n1: 21640 0x51462A7: ??? (in /usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.7.0.1)
+       n1: 21640 0x5147FAE: event_base_loop (in /usr/lib/x86_64-linux-gnu/libevent_core-2.1.so.7.0.1)
+        n1: 21640 0x5EE3EB0: ???
+         n1: 21640 0x4DDEAA3: start_thread (pthread_create.c:447)
+          n0: 21640 0x4E6BA63: clone (clone.S:100)
+     n1: 21640 0x5FC1FE1: ???
+      n1: 21640 0x5FCD24A: ???
+       n1: 21640 0x5E8D44C: ???
+        n1: 21640 0x5E1EA92: ???
+         n1: 21640 0x5608A63: ???
+          n1: 21640 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+           n1: 21640 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+            n1: 21640 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+             n0: 21640 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 21640 0x5F175DD: ???
+   n1: 21640 0x5F1C694: ???
+    n1: 21640 0x5EEA608: ???
+     n1: 21640 0x5EEAC26: ???
+      n1: 21640 0x5E8C4DC: ???
+       n1: 21640 0x5E1EA92: ???
+        n1: 21640 0x5608A63: ???
+         n1: 21640 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+          n1: 21640 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n1: 21640 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+            n0: 21640 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 10840 in 1 place, below massif's threshold (1.00%)
+ n5: 224800 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x48C5ECB: ompi_proc_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+   n1: 66272 0x49651D5: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+    n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 17312 0x4FB20ED: mca_base_var_group_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 17312 0x4FA6DF4: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 17312 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 17312 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 17312 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 17312 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 8672 in 1 place, below massif's threshold (1.00%)
+ n3: 135376 0x4DF637E: strdup (strdup.c:42)
+  n0: 58910 in 464 places, all below massif's threshold (1.00%)
+  n2: 54474 0x5F3BFEE: ???
+   n1: 52372 0x5F0FA53: ???
+    n1: 52372 0x5EEBA88: ???
+     n1: 52372 0x5E8C4DC: ???
+      n1: 52372 0x5E1EA92: ???
+       n1: 52372 0x5608A63: ???
+        n1: 52372 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 52372 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 52372 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 52372 0x11172B: main (fft_mpi_opt.cpp:269)
+   n0: 2102 in 1 place, below massif's threshold (1.00%)
+  n2: 21992 0x4FAFA8F: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 19461 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 19461 in 158 places, all below massif's threshold (1.00%)
+   n0: 2531 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n1: 69632 0x5F1E29D: ???
+  n1: 69632 0x5EEAF50: ???
+   n1: 69632 0x5E8C4DC: ???
+    n1: 69632 0x5E1EA92: ???
+     n1: 69632 0x5608A63: ???
+      n1: 69632 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 69632 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 69632 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 69632 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 58800 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 55104 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n0: 33936 in 159 places, all below massif's threshold (1.00%)
+   n1: 21168 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 21168 in 24 places, all below massif's threshold (1.00%)
+  n0: 3696 in 1 place, below massif's threshold (1.00%)
+ n1: 48681 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 48681 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 48681 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n2: 48681 0x4009528: _dl_map_object (dl-load.c:2268)
+     n1: 27366 0x400D8DB: dl_open_worker_begin (dl-open.c:578)
+      n1: 27366 0x400151B: _dl_catch_exception (dl-catch.c:237)
+       n1: 27366 0x400CD1F: dl_open_worker (dl-open.c:803)
+        n1: 27366 0x400151B: _dl_catch_exception (dl-catch.c:237)
+         n1: 27366 0x400D163: _dl_open (dl-open.c:905)
+          n1: 27366 0x4DDA1A3: dlopen_doit (dlopen.c:56)
+           n1: 27366 0x400151B: _dl_catch_exception (dl-catch.c:237)
+            n1: 27366 0x4001668: _dl_catch_error (dl-catch.c:256)
+             n1: 27366 0x4DD9C82: _dlerror_run (dlerror.c:138)
+              n1: 27366 0x4DDA25E: dlopen_implementation (dlopen.c:71)
+               n2: 27366 0x4DDA25E: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                n1: 20909 0x4FC53B1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                 n1: 20909 0x4FA5751: mca_base_component_repository_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                  n1: 20909 0x4FA5FE4: mca_base_component_find (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                   n1: 20909 0x4FB21A1: mca_base_framework_components_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                    n1: 20909 0x4FB26AA: mca_base_framework_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                     n1: 20909 0x4FB271D: mca_base_framework_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+                      n0: 20909 in 11 places, all below massif's threshold (1.00%)
+                n0: 6457 in 3 places, all below massif's threshold (1.00%)
+     n1: 21315 0x4002A2C: openaux (dl-deps.c:64)
+      n1: 21315 0x400151B: _dl_catch_exception (dl-catch.c:237)
+       n1: 21315 0x4002E66: _dl_map_object_deps (dl-deps.c:232)
+        n1: 21315 0x400D944: dl_open_worker_begin (dl-open.c:638)
+         n1: 21315 0x400151B: _dl_catch_exception (dl-catch.c:237)
+          n1: 21315 0x400CD1F: dl_open_worker (dl-open.c:803)
+           n1: 21315 0x400151B: _dl_catch_exception (dl-catch.c:237)
+            n1: 21315 0x400D163: _dl_open (dl-open.c:905)
+             n1: 21315 0x4DDA1A3: dlopen_doit (dlopen.c:56)
+              n1: 21315 0x400151B: _dl_catch_exception (dl-catch.c:237)
+               n1: 21315 0x4001668: _dl_catch_error (dl-catch.c:256)
+                n1: 21315 0x4DD9C82: _dlerror_run (dlerror.c:138)
+                 n1: 21315 0x4DDA25E: dlopen_implementation (dlopen.c:71)
+                  n2: 21315 0x4DDA25E: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                   n1: 17553 0x50D6A57: ??? (in /usr/lib/x86_64-linux-gnu/libhwloc.so.15.7.0)
+                    n1: 17553 0x50DF42C: ??? (in /usr/lib/x86_64-linux-gnu/libhwloc.so.15.7.0)
+                     n1: 17553 0x50CC814: ??? (in /usr/lib/x86_64-linux-gnu/libhwloc.so.15.7.0)
+                      n1: 17553 0x5E88DD3: ???
+                       n1: 17553 0x5E8E57B: ???
+                        n1: 17553 0x5E1EA92: ???
+                         n1: 17553 0x5608A63: ???
+                          n1: 17553 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+                           n1: 17553 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+                            n1: 17553 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+                             n0: 17553 0x11172B: main (fft_mpi_opt.cpp:269)
+                   n0: 3762 in 2 places, all below massif's threshold (1.00%)
+ n2: 42240 0x5F1CACD: ???
+  n1: 36096 0x5F1D097: ???
+   n0: 36096 in 68 places, all below massif's threshold (1.00%)
+  n0: 6144 in 1 place, below massif's threshold (1.00%)
+ n2: 27440 0x4FAF2FF: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 19880 0x4FAF9C1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 19040 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 19040 in 15 places, all below massif's threshold (1.00%)
+   n0: 840 in 1 place, below massif's threshold (1.00%)
+  n0: 7560 in 3 places, all below massif's threshold (1.00%)
+ n1: 27280 0x50CC5F9: hwloc_alloc_setup_object (in /usr/lib/x86_64-linux-gnu/libhwloc.so.15.7.0)
+  n0: 27280 in 12 places, all below massif's threshold (1.00%)
+ n1: 22320 0x5F0FA1D: ???
+  n1: 22320 0x5EEBA88: ???
+   n1: 22320 0x5E8C4DC: ???
+    n1: 22320 0x5E1EA92: ???
+     n1: 22320 0x5608A63: ???
+      n1: 22320 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 22320 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 22320 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 22320 0x11172B: main (fft_mpi_opt.cpp:269)
+ n1: 21120 0x4FA4669: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 21120 0x4FCD2AA: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 21120 0x4FA49EF: mca_base_component_repository_add (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 21120 0x4FA4B32: mca_base_component_repository_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 21120 0x4FA6A21: mca_base_open (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+      n1: 21120 0x4F86044: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+       n1: 21120 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 21120 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 21120 0x11172B: main (fft_mpi_opt.cpp:269)
+ n1: 19289 0x4F9FB5B: mca_base_var_generate_full_name4 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n0: 19289 in 8 places, all below massif's threshold (1.00%)
+ n1: 18496 0x5F16E74: ???
+  n0: 18496 in 13 places, all below massif's threshold (1.00%)
+ n1: 17856 0x5F18D9F: ???
+  n0: 17856 in 3 places, all below massif's threshold (1.00%)
+ n1: 16344 0x5F3BFD7: ???
+  n0: 16344 in 2 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=7
+#-----------
+time=49383700
+mem_heap_B=3120476
+mem_heap_extra_B=203996
+mem_stacks_B=6144
+heap_tree=detailed
+n11: 3120476 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1615768 0x4F7EE07: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 1051832 0x8C369B0: ???
+   n1: 1051832 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 1051832 0x8C1C2AD: ???
+     n1: 1051832 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 1051832 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 1051832 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 1051832 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 527544 0x8C36962: ???
+   n1: 527544 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 527544 0x8C1C2AD: ???
+     n1: 527544 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 527544 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 527544 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 527544 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 36392 in 2 places, all below massif's threshold (1.00%)
+ n0: 511259 in 699 places, all below massif's threshold (1.00%)
+ n5: 245160 0x5F17464: ???
+  n1: 82840 0x5F1C665: ???
+   n1: 82840 0x5EEA608: ???
+    n1: 82840 0x5EEAC26: ???
+     n1: 82840 0x5E8C4DC: ???
+      n1: 82840 0x5E1EA92: ???
+       n1: 82840 0x5608A63: ???
+        n1: 82840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 82840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 82840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 82840 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 43280 0x5F80835: ???
+   n1: 43280 0x5F8DF18: ???
+    n1: 43280 0x5F8A24F: ???
+     n0: 43280 in 2 places, all below massif's threshold (1.00%)
+  n1: 43280 0x5F808BD: ???
+   n1: 43280 0x5F8DF18: ???
+    n1: 43280 0x5F8A24F: ???
+     n0: 43280 in 2 places, all below massif's threshold (1.00%)
+  n1: 43280 0x5F8094D: ???
+   n1: 43280 0x5F8DF18: ???
+    n1: 43280 0x5F8A24F: ???
+     n0: 43280 in 2 places, all below massif's threshold (1.00%)
+  n0: 32480 in 2 places, all below massif's threshold (1.00%)
+ n4: 226752 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x48C5ECB: ompi_proc_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+   n1: 66272 0x49651D5: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+    n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 27936 in 3 places, all below massif's threshold (1.00%)
+ n2: 150625 0x4DF637E: strdup (strdup.c:42)
+  n0: 96151 in 475 places, all below massif's threshold (1.00%)
+  n2: 54474 0x5F3BFEE: ???
+   n1: 52372 0x5F0FA53: ???
+    n1: 52372 0x5EEBA88: ???
+     n1: 52372 0x5E8C4DC: ???
+      n1: 52372 0x5E1EA92: ???
+       n1: 52372 0x5608A63: ???
+        n1: 52372 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 52372 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 52372 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 52372 0x11172B: main (fft_mpi_opt.cpp:269)
+   n0: 2102 in 1 place, below massif's threshold (1.00%)
+ n2: 86688 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 82824 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 46032 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 46032 in 111 places, all below massif's threshold (1.00%)
+   n0: 36792 in 167 places, all below massif's threshold (1.00%)
+  n0: 3864 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n1: 69632 0x5F1E29D: ???
+  n1: 69632 0x5EEAF50: ???
+   n1: 69632 0x5E8C4DC: ???
+    n1: 69632 0x5E1EA92: ???
+     n1: 69632 0x5608A63: ???
+      n1: 69632 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 69632 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 69632 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 69632 0x11172B: main (fft_mpi_opt.cpp:269)
+ n1: 64184 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 64184 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 64184 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n2: 64184 0x4009528: _dl_map_object (dl-load.c:2268)
+     n1: 39092 0x400D8DB: dl_open_worker_begin (dl-open.c:578)
+      n1: 39092 0x400151B: _dl_catch_exception (dl-catch.c:237)
+       n1: 39092 0x400CD1F: dl_open_worker (dl-open.c:803)
+        n1: 39092 0x400151B: _dl_catch_exception (dl-catch.c:237)
+         n1: 39092 0x400D163: _dl_open (dl-open.c:905)
+          n1: 39092 0x4DDA1A3: dlopen_doit (dlopen.c:56)
+           n1: 39092 0x400151B: _dl_catch_exception (dl-catch.c:237)
+            n1: 39092 0x4001668: _dl_catch_error (dl-catch.c:256)
+             n1: 39092 0x4DD9C82: _dlerror_run (dlerror.c:138)
+              n1: 39092 0x4DDA25E: dlopen_implementation (dlopen.c:71)
+               n1: 39092 0x4DDA25E: dlopen@@GLIBC_2.34 (dlopen.c:81)
+                n0: 39092 in 4 places, all below massif's threshold (1.00%)
+     n0: 25092 in 1 place, below massif's threshold (1.00%)
+ n2: 42240 0x5F1CACD: ???
+  n1: 36096 0x5F1D097: ???
+   n0: 36096 in 68 places, all below massif's threshold (1.00%)
+  n0: 6144 in 1 place, below massif's threshold (1.00%)
+ n1: 34440 0x4FAF2FF: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n0: 34440 in 7 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=8
+#-----------
+time=55210401
+mem_heap_B=3208139
+mem_heap_extra_B=233877
+mem_stacks_B=2088
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=62527236
+mem_heap_B=5254731
+mem_heap_extra_B=241701
+mem_stacks_B=1824
+heap_tree=peak
+n17: 5254731 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1639152 0x4F7EE07: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 1051832 0x8C369B0: ???
+   n1: 1051832 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 1051832 0x8C1C2AD: ???
+     n1: 1051832 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 1051832 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 1051832 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 1051832 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 527544 0x8C36962: ???
+   n1: 527544 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 527544 0x8C1C2AD: ???
+     n1: 527544 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 527544 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 527544 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 527544 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 59776 in 13 places, all below massif's threshold (1.00%)
+ n0: 642832 in 787 places, all below massif's threshold (1.00%)
+ n1: 262656 0x1128F5: packed_alltoall(int, double const*, double*, int, ompi_communicator_t*) [clone .constprop.0] (fft_mpi_opt.cpp:113)
+  n1: 262656 0x111AD5: forward_fft_opt (fft_mpi_opt.cpp:165)
+   n0: 262656 0x111AD5: main (fft_mpi_opt.cpp:337)
+ n1: 262656 0x112980: packed_alltoall(int, double const*, double*, int, ompi_communicator_t*) [clone .constprop.0] (fft_mpi_opt.cpp:122)
+  n1: 262656 0x111AD5: forward_fft_opt (fft_mpi_opt.cpp:165)
+   n0: 262656 0x111AD5: main (fft_mpi_opt.cpp:337)
+ n0: 262144 0x111819: main (fft_mpi_opt.cpp:298)
+ n0: 262144 0x111826: main (fft_mpi_opt.cpp:299)
+ n0: 262144 0x111836: main (fft_mpi_opt.cpp:300)
+ n0: 262144 0x111841: main (fft_mpi_opt.cpp:301)
+ n0: 262144 0x11184E: main (fft_mpi_opt.cpp:302)
+ n2: 245160 0x5F17464: ???
+  n0: 162320 in 5 places, all below massif's threshold (1.00%)
+  n1: 82840 0x5F1C665: ???
+   n1: 82840 0x5EEA608: ???
+    n1: 82840 0x5EEAC26: ???
+     n1: 82840 0x5E8C4DC: ???
+      n1: 82840 0x5E1EA92: ???
+       n1: 82840 0x5608A63: ???
+        n1: 82840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 82840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 82840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 82840 0x11172B: main (fft_mpi_opt.cpp:269)
+ n4: 242464 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x48C5ECB: ompi_proc_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+   n1: 66272 0x49651D5: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+    n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 43648 in 17 places, all below massif's threshold (1.00%)
+ n1: 178407 0x4DF637E: strdup (strdup.c:42)
+  n0: 178407 in 489 places, all below massif's threshold (1.00%)
+ n1: 131072 0x4FD0DB1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 131072 0x4F7EE39: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 131072 0x912953A: ???
+    n1: 131072 0x495442C: ompi_osc_base_find_available (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 131072 0x49653FD: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 131072 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 131072 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 124152 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 120288 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 82656 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 82656 in 262 places, all below massif's threshold (1.00%)
+   n0: 37632 in 168 places, all below massif's threshold (1.00%)
+  n0: 3864 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n1: 72100 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 72100 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 72100 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n1: 72100 0x4009528: _dl_map_object (dl-load.c:2268)
+     n0: 72100 in 2 places, all below massif's threshold (1.00%)
+ n1: 69632 0x5F1E29D: ???
+  n1: 69632 0x5EEAF50: ???
+   n1: 69632 0x5E8C4DC: ???
+    n1: 69632 0x5E1EA92: ???
+     n1: 69632 0x5608A63: ???
+      n1: 69632 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 69632 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 69632 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 69632 0x11172B: main (fft_mpi_opt.cpp:269)
+#-----------
+snapshot=10
+#-----------
+time=68735169
+mem_heap_B=5255195
+mem_heap_extra_B=241773
+mem_stacks_B=2440
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=73693973
+mem_heap_B=4729819
+mem_heap_extra_B=241725
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=79930691
+mem_heap_B=4729947
+mem_heap_extra_B=241741
+mem_stacks_B=1680
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=84208198
+mem_heap_B=4729947
+mem_heap_extra_B=241741
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=90281841
+mem_heap_B=4729819
+mem_heap_extra_B=241725
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=94042880
+mem_heap_B=4729819
+mem_heap_extra_B=241725
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=100279538
+mem_heap_B=4730235
+mem_heap_extra_B=241749
+mem_stacks_B=1592
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=106398595
+mem_heap_B=4730235
+mem_heap_extra_B=241749
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=116042605
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1680
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=125480557
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2440
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=130778587
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1632
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=139107993
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1680
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=145921116
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1632
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=151171093
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2392
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=157736247
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2376
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=164566724
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=170034799
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1592
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=179712397
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1632
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=187064000
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=192121761
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1592
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=196960609
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2440
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=204264705
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2440
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=209458626
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=214318039
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2240
+heap_tree=detailed
+n17: 5255483 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1639440 0x4F7EE07: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 1051832 0x8C369B0: ???
+   n1: 1051832 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 1051832 0x8C1C2AD: ???
+     n1: 1051832 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 1051832 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 1051832 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 1051832 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 527544 0x8C36962: ???
+   n1: 527544 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 527544 0x8C1C2AD: ???
+     n1: 527544 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 527544 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 527544 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 527544 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 60064 in 14 places, all below massif's threshold (1.00%)
+ n0: 643296 in 796 places, all below massif's threshold (1.00%)
+ n2: 262656 0x1128F5: packed_alltoall(int, double const*, double*, int, ompi_communicator_t*) [clone .constprop.0] (fft_mpi_opt.cpp:113)
+  n1: 262656 0x111E30: inverse_fft_opt (fft_mpi_opt.cpp:222)
+   n0: 262656 0x111E30: main (fft_mpi_opt.cpp:339)
+  n0: 0 in 3 places, all below massif's threshold (1.00%)
+ n2: 262656 0x112980: packed_alltoall(int, double const*, double*, int, ompi_communicator_t*) [clone .constprop.0] (fft_mpi_opt.cpp:122)
+  n1: 262656 0x111E30: inverse_fft_opt (fft_mpi_opt.cpp:222)
+   n0: 262656 0x111E30: main (fft_mpi_opt.cpp:339)
+  n0: 0 in 3 places, all below massif's threshold (1.00%)
+ n0: 262144 0x111819: main (fft_mpi_opt.cpp:298)
+ n0: 262144 0x111826: main (fft_mpi_opt.cpp:299)
+ n0: 262144 0x111836: main (fft_mpi_opt.cpp:300)
+ n0: 262144 0x111841: main (fft_mpi_opt.cpp:301)
+ n0: 262144 0x11184E: main (fft_mpi_opt.cpp:302)
+ n2: 245160 0x5F17464: ???
+  n0: 162320 in 5 places, all below massif's threshold (1.00%)
+  n1: 82840 0x5F1C665: ???
+   n1: 82840 0x5EEA608: ???
+    n1: 82840 0x5EEAC26: ???
+     n1: 82840 0x5E8C4DC: ???
+      n1: 82840 0x5E1EA92: ???
+       n1: 82840 0x5608A63: ???
+        n1: 82840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 82840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 82840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 82840 0x11172B: main (fft_mpi_opt.cpp:269)
+ n4: 242464 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x48C5ECB: ompi_proc_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+   n1: 66272 0x49651D5: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+    n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 43648 in 17 places, all below massif's threshold (1.00%)
+ n1: 178407 0x4DF637E: strdup (strdup.c:42)
+  n0: 178407 in 489 places, all below massif's threshold (1.00%)
+ n1: 131072 0x4FD0DB1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 131072 0x4F7EE39: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 131072 0x912953A: ???
+    n1: 131072 0x495442C: ompi_osc_base_find_available (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 131072 0x49653FD: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 131072 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 131072 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 124152 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 120288 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 82656 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 82656 in 262 places, all below massif's threshold (1.00%)
+   n0: 37632 in 168 places, all below massif's threshold (1.00%)
+  n0: 3864 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n1: 72100 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 72100 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 72100 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n1: 72100 0x4009528: _dl_map_object (dl-load.c:2268)
+     n0: 72100 in 2 places, all below massif's threshold (1.00%)
+ n1: 69632 0x5F1E29D: ???
+  n1: 69632 0x5EEAF50: ???
+   n1: 69632 0x5E8C4DC: ???
+    n1: 69632 0x5E1EA92: ???
+     n1: 69632 0x5608A63: ???
+      n1: 69632 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 69632 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 69632 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 69632 0x11172B: main (fft_mpi_opt.cpp:269)
+#-----------
+snapshot=34
+#-----------
+time=219157024
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2440
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=223995877
+mem_heap_B=4730235
+mem_heap_extra_B=241749
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=228834706
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2376
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=234034065
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1680
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=239074835
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1632
+heap_tree=detailed
+n15: 4730107 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1639440 0x4F7EE07: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 1051832 0x8C369B0: ???
+   n1: 1051832 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 1051832 0x8C1C2AD: ???
+     n1: 1051832 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 1051832 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 1051832 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 1051832 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 527544 0x8C36962: ???
+   n1: 527544 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 527544 0x8C1C2AD: ???
+     n1: 527544 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 527544 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 527544 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 527544 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 60064 in 14 places, all below massif's threshold (1.00%)
+ n0: 643232 in 798 places, all below massif's threshold (1.00%)
+ n0: 262144 0x111819: main (fft_mpi_opt.cpp:298)
+ n0: 262144 0x111826: main (fft_mpi_opt.cpp:299)
+ n0: 262144 0x111836: main (fft_mpi_opt.cpp:300)
+ n0: 262144 0x111841: main (fft_mpi_opt.cpp:301)
+ n0: 262144 0x11184E: main (fft_mpi_opt.cpp:302)
+ n2: 245160 0x5F17464: ???
+  n0: 162320 in 5 places, all below massif's threshold (1.00%)
+  n1: 82840 0x5F1C665: ???
+   n1: 82840 0x5EEA608: ???
+    n1: 82840 0x5EEAC26: ???
+     n1: 82840 0x5E8C4DC: ???
+      n1: 82840 0x5E1EA92: ???
+       n1: 82840 0x5608A63: ???
+        n1: 82840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 82840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 82840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 82840 0x11172B: main (fft_mpi_opt.cpp:269)
+ n4: 242464 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x48C5ECB: ompi_proc_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+   n1: 66272 0x49651D5: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+    n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 43648 in 17 places, all below massif's threshold (1.00%)
+ n3: 178407 0x4DF637E: strdup (strdup.c:42)
+  n0: 71339 in 487 places, all below massif's threshold (1.00%)
+  n2: 54474 0x5F3BFEE: ???
+   n1: 52372 0x5F0FA53: ???
+    n1: 52372 0x5EEBA88: ???
+     n1: 52372 0x5E8C4DC: ???
+      n1: 52372 0x5E1EA92: ???
+       n1: 52372 0x5608A63: ???
+        n1: 52372 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 52372 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 52372 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 52372 0x11172B: main (fft_mpi_opt.cpp:269)
+   n0: 2102 in 1 place, below massif's threshold (1.00%)
+  n2: 52594 0x4FAFA8F: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 50027 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 50027 in 164 places, all below massif's threshold (1.00%)
+   n0: 2567 in 1 place, below massif's threshold (1.00%)
+ n1: 131072 0x4FD0DB1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 131072 0x4F7EE39: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 131072 0x912953A: ???
+    n1: 131072 0x495442C: ompi_osc_base_find_available (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 131072 0x49653FD: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 131072 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 131072 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 124152 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 120288 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 82656 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 82656 in 262 places, all below massif's threshold (1.00%)
+   n0: 37632 in 168 places, all below massif's threshold (1.00%)
+  n0: 3864 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n1: 72100 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 72100 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 72100 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n1: 72100 0x4009528: _dl_map_object (dl-load.c:2268)
+     n0: 72100 in 2 places, all below massif's threshold (1.00%)
+ n1: 69632 0x5F1E29D: ???
+  n1: 69632 0x5EEAF50: ???
+   n1: 69632 0x5E8C4DC: ???
+    n1: 69632 0x5E1EA92: ???
+     n1: 69632 0x5608A63: ???
+      n1: 69632 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 69632 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 69632 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 69632 0x11172B: main (fft_mpi_opt.cpp:269)
+#-----------
+snapshot=39
+#-----------
+time=243913705
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2440
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=248752468
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1600
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=253617495
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=258683155
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=263521991
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1592
+heap_tree=detailed
+n15: 4730107 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1639440 0x4F7EE07: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 1051832 0x8C369B0: ???
+   n1: 1051832 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 1051832 0x8C1C2AD: ???
+     n1: 1051832 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 1051832 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 1051832 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 1051832 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 527544 0x8C36962: ???
+   n1: 527544 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 527544 0x8C1C2AD: ???
+     n1: 527544 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 527544 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 527544 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 527544 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 60064 in 14 places, all below massif's threshold (1.00%)
+ n0: 643232 in 798 places, all below massif's threshold (1.00%)
+ n0: 262144 0x111819: main (fft_mpi_opt.cpp:298)
+ n0: 262144 0x111826: main (fft_mpi_opt.cpp:299)
+ n0: 262144 0x111836: main (fft_mpi_opt.cpp:300)
+ n0: 262144 0x111841: main (fft_mpi_opt.cpp:301)
+ n0: 262144 0x11184E: main (fft_mpi_opt.cpp:302)
+ n2: 245160 0x5F17464: ???
+  n0: 162320 in 5 places, all below massif's threshold (1.00%)
+  n1: 82840 0x5F1C665: ???
+   n1: 82840 0x5EEA608: ???
+    n1: 82840 0x5EEAC26: ???
+     n1: 82840 0x5E8C4DC: ???
+      n1: 82840 0x5E1EA92: ???
+       n1: 82840 0x5608A63: ???
+        n1: 82840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 82840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 82840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 82840 0x11172B: main (fft_mpi_opt.cpp:269)
+ n4: 242464 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x48C5ECB: ompi_proc_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+   n1: 66272 0x49651D5: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+    n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 43648 in 17 places, all below massif's threshold (1.00%)
+ n3: 178407 0x4DF637E: strdup (strdup.c:42)
+  n0: 71339 in 487 places, all below massif's threshold (1.00%)
+  n2: 54474 0x5F3BFEE: ???
+   n1: 52372 0x5F0FA53: ???
+    n1: 52372 0x5EEBA88: ???
+     n1: 52372 0x5E8C4DC: ???
+      n1: 52372 0x5E1EA92: ???
+       n1: 52372 0x5608A63: ???
+        n1: 52372 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 52372 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 52372 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 52372 0x11172B: main (fft_mpi_opt.cpp:269)
+   n0: 2102 in 1 place, below massif's threshold (1.00%)
+  n2: 52594 0x4FAFA8F: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 50027 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 50027 in 164 places, all below massif's threshold (1.00%)
+   n0: 2567 in 1 place, below massif's threshold (1.00%)
+ n1: 131072 0x4FD0DB1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 131072 0x4F7EE39: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 131072 0x912953A: ???
+    n1: 131072 0x495442C: ompi_osc_base_find_available (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 131072 0x49653FD: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 131072 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 131072 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 124152 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 120288 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 82656 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 82656 in 262 places, all below massif's threshold (1.00%)
+   n0: 37632 in 168 places, all below massif's threshold (1.00%)
+  n0: 3864 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n1: 72100 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 72100 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 72100 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n1: 72100 0x4009528: _dl_map_object (dl-load.c:2268)
+     n0: 72100 in 2 places, all below massif's threshold (1.00%)
+ n1: 69632 0x5F1E29D: ???
+  n1: 69632 0x5EEAF50: ???
+   n1: 69632 0x5E8C4DC: ???
+    n1: 69632 0x5E1EA92: ???
+     n1: 69632 0x5608A63: ???
+      n1: 69632 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 69632 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 69632 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 69632 0x11172B: main (fft_mpi_opt.cpp:269)
+#-----------
+snapshot=44
+#-----------
+time=268360791
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2376
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=273199674
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1632
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=278571793
+mem_heap_B=4730107
+mem_heap_extra_B=241733
+mem_stacks_B=1744
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=283449960
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2240
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=288288876
+mem_heap_B=5255483
+mem_heap_extra_B=241781
+mem_stacks_B=2440
+heap_tree=detailed
+n17: 5255483 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n3: 1639440 0x4F7EE07: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 1051832 0x8C369B0: ???
+   n1: 1051832 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 1051832 0x8C1C2AD: ???
+     n1: 1051832 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 1051832 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 1051832 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 1051832 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 527544 0x8C36962: ???
+   n1: 527544 0x4FCC24D: mca_btl_base_select (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 527544 0x8C1C2AD: ???
+     n1: 527544 0x4914928: mca_bml_base_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 527544 0x496529A: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n1: 527544 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n0: 527544 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 60064 in 14 places, all below massif's threshold (1.00%)
+ n0: 643296 in 796 places, all below massif's threshold (1.00%)
+ n2: 262656 0x1128F5: packed_alltoall(int, double const*, double*, int, ompi_communicator_t*) [clone .constprop.0] (fft_mpi_opt.cpp:113)
+  n1: 262656 0x112024: inverse_fft_opt (fft_mpi_opt.cpp:261)
+   n0: 262656 0x112024: main (fft_mpi_opt.cpp:339)
+  n0: 0 in 3 places, all below massif's threshold (1.00%)
+ n2: 262656 0x112980: packed_alltoall(int, double const*, double*, int, ompi_communicator_t*) [clone .constprop.0] (fft_mpi_opt.cpp:122)
+  n1: 262656 0x112024: inverse_fft_opt (fft_mpi_opt.cpp:261)
+   n0: 262656 0x112024: main (fft_mpi_opt.cpp:339)
+  n0: 0 in 3 places, all below massif's threshold (1.00%)
+ n0: 262144 0x111819: main (fft_mpi_opt.cpp:298)
+ n0: 262144 0x111826: main (fft_mpi_opt.cpp:299)
+ n0: 262144 0x111836: main (fft_mpi_opt.cpp:300)
+ n0: 262144 0x111841: main (fft_mpi_opt.cpp:301)
+ n0: 262144 0x11184E: main (fft_mpi_opt.cpp:302)
+ n2: 245160 0x5F17464: ???
+  n0: 162320 in 5 places, all below massif's threshold (1.00%)
+  n1: 82840 0x5F1C665: ???
+   n1: 82840 0x5EEA608: ???
+    n1: 82840 0x5EEAC26: ???
+     n1: 82840 0x5E8C4DC: ???
+      n1: 82840 0x5E1EA92: ???
+       n1: 82840 0x5608A63: ???
+        n1: 82840 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+         n1: 82840 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+          n1: 82840 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+           n0: 82840 0x11172B: main (fft_mpi_opt.cpp:269)
+ n4: 242464 0x4F7890E: opal_hash_table_init2 (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 66272 0x48C5ECB: ompi_proc_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+   n1: 66272 0x49651D5: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+    n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FA6DC5: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n1: 66272 0x4FB1F6D: mca_base_pvar_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 66272 0x4FA6DFD: mca_base_var_init (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n1: 66272 0x4F85F81: opal_init_util (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+     n1: 66272 0x4964D18: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 66272 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 66272 0x11172B: main (fft_mpi_opt.cpp:269)
+  n0: 43648 in 17 places, all below massif's threshold (1.00%)
+ n1: 178407 0x4DF637E: strdup (strdup.c:42)
+  n0: 178407 in 489 places, all below massif's threshold (1.00%)
+ n1: 131072 0x4FD0DB1: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n1: 131072 0x4F7EE39: opal_free_list_grow_st (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 131072 0x912953A: ???
+    n1: 131072 0x495442C: ompi_osc_base_find_available (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+     n1: 131072 0x49653FD: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+      n1: 131072 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+       n0: 131072 0x11172B: main (fft_mpi_opt.cpp:269)
+ n2: 124152 0x4FAF9F9: ??? (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+  n2: 120288 0x4FB04F8: mca_base_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+   n1: 82656 0x4FB0540: mca_base_component_var_register (in /usr/lib/x86_64-linux-gnu/libopen-pal.so.40.30.3)
+    n0: 82656 in 262 places, all below massif's threshold (1.00%)
+   n0: 37632 in 168 places, all below massif's threshold (1.00%)
+  n0: 3864 in 1 place, below massif's threshold (1.00%)
+ n1: 73728 0x4A6238E: ??? (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+  n1: 73728 0x400571E: call_init.part.0 (dl-init.c:74)
+   n1: 73728 0x4005823: call_init (dl-init.c:120)
+    n1: 73728 0x4005823: _dl_init (dl-init.c:121)
+     n1: 73728 0x401F59F: ??? (in /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2)
+      n1: 73728 0x2: ???
+       n1: 73728 0x1FFEFFEF2A: ???
+        n1: 73728 0x1FFEFFEF3D: ???
+         n0: 73728 0x1FFEFFEF40: ???
+ n1: 72100 0x400C72C: calloc (rtld-malloc.h:44)
+  n1: 72100 0x400C72C: _dl_new_object (dl-object.c:92)
+   n1: 72100 0x4007ABE: _dl_map_object_from_fd (dl-load.c:1053)
+    n1: 72100 0x4009528: _dl_map_object (dl-load.c:2268)
+     n0: 72100 in 2 places, all below massif's threshold (1.00%)
+ n1: 69632 0x5F1E29D: ???
+  n1: 69632 0x5EEAF50: ???
+   n1: 69632 0x5E8C4DC: ???
+    n1: 69632 0x5E1EA92: ???
+     n1: 69632 0x5608A63: ???
+      n1: 69632 0x50A0159: orte_init (in /usr/lib/x86_64-linux-gnu/libopen-rte.so.40.30.3)
+       n1: 69632 0x4964EEB: ompi_mpi_init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+        n1: 69632 0x48FBD81: PMPI_Init (in /usr/lib/x86_64-linux-gnu/libmpi.so.40.30.6)
+         n0: 69632 0x11172B: main (fft_mpi_opt.cpp:269)
+#-----------
+snapshot=49
+#-----------
+time=293127650
+mem_heap_B=3216089
+mem_heap_extra_B=231887
+mem_stacks_B=2208
+heap_tree=empty

@@ -1,0 +1,21 @@
+(* 错误类型：语法错误 — MissingParenthesis（缺右括号）
+ * 在 CheckAllPass 过程的 IF 条件表达式中缺少右括号 *)
+PROCEDURE CheckAllPass(t       : StudentTable;
+                       n       : INTEGER;
+                       VAR result : BOOLEAN);
+VAR
+  idx : INTEGER;
+  ok  : BOOLEAN;
+BEGIN
+  ok := TRUE;
+  idx := 0;
+  WHILE (idx < n & ok DO    (* ERROR: 缺少右括号，应为 '(idx < n) & ok' *)
+    IF t[idx].Average >= 90 THEN
+    ELSIF t[idx].Average >= 60 THEN
+    ELSE
+      ok := FALSE
+    END;
+    idx := idx + 1
+  END;
+  result := ok
+END CheckAllPass;

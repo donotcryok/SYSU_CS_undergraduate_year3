@@ -1,0 +1,20 @@
+(* 错误类型：词法错误 — IllegalOctal（八进制 0 开头却包含 8 或 9）
+ * 在 FindBestStudent 过程中使用非法八进制字面量 08 *)
+PROCEDURE FindBestStudent(t    : StudentTable;
+                          n    : INTEGER;
+                          VAR best : Student);
+VAR
+  idx     : INTEGER;
+  maxTot  : INTEGER;
+BEGIN
+  best := t[0];
+  maxTot := t[0].Total;
+  idx := 08;   (* ERROR: '08' 以 0 开头（八进制），但包含数字 8 *)
+  WHILE idx < n DO
+    IF t[idx].Total > maxTot THEN
+      best := t[idx];
+      maxTot := t[idx].Total
+    END;
+    idx := idx + 1
+  END
+END FindBestStudent;
